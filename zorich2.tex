@@ -1,0 +1,261 @@
+\documentclass[letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{latexsym}
+\usepackage[pdftex]{graphicx}
+\usepackage{color}
+
+\setlength{\topmargin}{-0.5in} \setlength{\textwidth}{6.5in}
+\setlength{\oddsidemargin}{0.0in} \setlength{\textheight}{9.1in}
+
+\newlength{\pagewidth}
+\setlength{\pagewidth}{6.5in} \pagestyle{empty}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Example]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Remark]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\title{Zorich Chapter 2: The Real Numbers Notes}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-.5in}
+\section{The axiom System and some General Properties of the Set of Real Numbers}
+\subsection{Definition of the Set of Real Numbers}
+\newtheorem{axi}{Axiom}
+\begin{definition}
+Set $\R$ is called the set of \textbf{real numbers} if:\\
+1. Axioms for addition\\
+2. Axioms for multiplication\\
+(1,2). Multiplication is distributive with respect to addition\\
+3. Order Axioms\\
+(1,3). $(x\leq y) \implies (x+z\leq y+z)$\\ 
+(2,3). $(0\leq x) \wedge (0\leq y) \implies (0\leq xy)$\\
+4. The axiom of completeness (continuity)\\
+All satisfied.
+\end{definition}
+
+\begin{axi}[Axiom for addition]
+An operation
+\[ +: \R \times \R \to \R \]
+is defined, such that.
+Each ordered pair $(x,y)$ map to $x=y \in \R$, The condition of the following is met.
+\begin{enumerate}
+\item There exist a identity 0, such that
+\[
+x+0 = x
+\]
+for all $x \in \R$
+\item There exist $-x\in \R$ for every $x$ such that
+\[ 
+x+(-x) = 0
+\]
+\item + is associate 
+\[
+x+(y+z) = (x+y)+z
+\]
+\item + is commutative
+\[
+x+y = y+x
+\]
+\end{enumerate}
+\end{axi}
+
+\begin{definition}
+A \textbf{group} is a set satisfies Axioms for addition except commutativity.
+\end{definition}
+
+\begin{definition}
+A \textbf{commutative group} is a set satisfies Axioms for addition.
+\end{definition}
+
+\begin{axi}[Axioms for multiplication]
+Operation 
+\[
+\cdot: \R \times \R \to \R
+\]
+ is defined, such that
+\begin{enumerate}
+\item There exist a identity $1\in \R \setminus 0$, such that
+\[
+x\cdot 1 = x
+\]
+\item There exist $x^{-1} \in \R$ for every $x\in \R \setminus 0$ such that
+\[
+x\cdot x^{-1} = 1
+\]
+\item $\cdot$ is associative
+\item $\cdot$ is commutative
+\end{enumerate}
+\end{axi}
+
+Axioms for multiplication also defines a group structure on $\R \setminus 0$. Later $x\cdot y$ is also written as $xy$ if there is no ambiguity.
+
+\begin{definition}
+A \textbf{field} is a set satisfy Axioms for addition, multiplication and multiplication is distributive with respect to addition.
+\end{definition}
+
+\begin{axi}[Order Axioms]
+A relation $\leq$ for elements $x,y\in \R$, here is the conditions must hold.
+\begin{enumerate}
+\item $\forall x \in \R (x\leq x)$
+\item $(x\leq y) \wedge (y\leq x) \implies (x=y)$
+\item $(x\leq y) \wedge (y\leq z) \implies (x\leq z)$
+\item $\forall x \in \R \wedge \forall y \in \R (x\leq y) \vee (y \leq x)$
+\end{enumerate}
+\end{axi}
+
+\begin{definition}
+A set satisfying Order Axioms except the last one is said to be \textbf{partially ordered}.
+\end{definition}
+
+\begin{definition}
+A set satisfying Order Axioms is said to be \textbf{linearly ordered}.
+\end{definition}
+
+\begin{axi}[Axiom of completeness(continuity)]
+If $X$ and $Y$ are nonempty subset of $\R$ having the property $x \leq y$ for every $x \in X$ and every $y\in Y$. Then there exist $c\in R$ such that $x\leq c\leq y$ for all $x \in X$ and $y \in Y$.
+\end{axi}
+
+page 38 have a nice discussion on axioms.
+
+\begin{definition}
+If a set satisfying an axiom system, then the set is \textbf{consistent}.
+\end{definition}
+\begin{definition}
+If an axiom system determine an object uniquely, then it is \textbf{categorical}.
+\end{definition}
+\begin{definition}
+If set $A$ and set $B$ satisfying the axiom system, and there is a bijection from $A$ to $B$ and preserve the axiom system. Then the mapping is called an \textbf{isomorphism} and the $A$ and $B$ are \textbf{isomorphic}
+\end{definition}
+\begin{theorem}
+Real numbers are consistent from ZFC.
+\end{theorem}
+\begin{theorem}
+Real numbers is categorical.
+\end{theorem}
+
+\subsection{Some General Algebraic Properties of Real Numbers}
+\begin{enumerate}
+\item Consequences of the Addition Axioms.
+	\begin{enumerate}
+		\item There is only one additive identity in the set of real numbers.
+		\item There is only one negative for each number.
+		\item $a+x=b$ has a unique solution, $x = b+(-a)$
+	\end{enumerate}
+\item Consequences of the Multiplication Axioms.
+	\begin{enumerate}
+		\item There is only one multiplicative identity.
+		\item For $x\neq 0$, there is only one reciprocal $x^{-1}$
+		\item $a\in R \setminus 0$, $a\cdot b$ has a unique solution $x = b\cdot a^{-1}$
+	\end{enumerate}
+\item Consequences of the Multiplication Axioms.
+	\begin{enumerate}
+		\item There is only one multiplicative identity.
+		\item For $x\neq 0$, there is only one reciprocal $x^{-1}$
+		\item $a\in R \setminus 0$, $a\cdot b$ has a unique solution $x = b\cdot a^{-1}$
+	\end{enumerate}
+\item Consequences of the Axiom Connecting Addition and Multiplication.
+	\begin{enumerate}
+		\item $x\cdot 0 = 0$
+		\item $(xy=0)\implies (x=0)\vee(y=0)$
+		\item $-x = -1 \cdot x$
+		\item $-1 \cdot (-x) = x$
+		\item $(-x)(-x) = x\cdot x$
+	\end{enumerate}
+\item Consequences of the Order Axioms
+	\begin{enumerate}
+		\item only one of the 3 relation hold for a particular $x$ and $y$
+		\[ x<y, x=y, y>y \]
+		\item \[(x<y)\wedge(y\leq z) \implies (x<z)\]
+			\[(x\leq y)\wedge(y<z) \implies (x<z)\]
+	\end{enumerate}
+\item Consequences of the Axioms Connecting Order with Addition and Multiplication
+	\begin{enumerate}
+		\item 
+		\[(x<y)\implies (x+z) < (y+z)\]
+		\[(0<x)\implies (-x<0)\]
+		\[(x\leq y) \wedge (z\leq w) \implies (x+z) \leq (y+w)\]
+		\[(x\leq y) \wedge (z< w) \implies (x+z) < (y+w)\]
+		\item
+		\[(0<x) \wedge (0<y) \implies (0<xy)\]
+		\[(x<0) \wedge (y<0) \implies (0<xy)\]
+		\[(x<0) \wedge (0<y) \implies (xy<0)\]
+		\[(0<x) \wedge (y<0) \implies (xy<0)\]
+		\[(x<y) \wedge (0<z) \implies (xz<yz)\]
+		\[(x<y) \wedge (z<0) \implies (yz<xz)\]
+		\item \[0<1\]
+		\item 
+		\[(0<x)\implies (0<x^{-1})\]
+		\[(0<x)\wedge(x<y) \implies (0<y^{-1}) \wedge (y^{-1} < x^{-1})\]
+	\end{enumerate}
+\end{enumerate}
+\begin{definition}
+$\{x| x\in \R \wedge 0<x\}$ is the set of \textbf{positive numbers}
+\end{definition}
+\begin{definition}
+$\{x| x\in \R \wedge x<0\}$ is the set of \textbf{negative numbers}
+\end{definition}
+
+\subsection{The completeness Axiom and the Existence of a Least Upper (or Greatest Lower) Bound of a Set of Numbers}
+\begin{definition}
+A set $X\subset \R$ is said to be \textbf{bounded above} (resp. \textbf{bounded below}) if there exist a number $c \in \R$ such that $x\leq c$(resp. $c\leq x$) for all $x\in X$. $c$ in this case is the \textbf{upper bound} (resp. \textbf{lower bound}) of the set $X$. It's also called a \textbf{majorant} (resp. \textbf{minorant}) of X.
+\end{definition}
+
+\begin{definition}
+A set that is bounded both above and below is called \textbf{bounded}
+\end{definition}
+
+\begin{definition}
+An element $a \in X$ is called the \textbf{largest} or \textbf{maximal} (resp. \textbf{smallest} or \textbf{minimal}) element of $X$ is $x \leq a$ (resp. $a\leq x$) for all $x\in X$.
+\end{definition}
+\begin{definition}
+\[
+(a = \max X) := (a \in X \wedge \forall x \in X (x\leq a))
+\]
+\end{definition}
+\begin{definition}
+\[
+(a = \min X) := (a \in X \wedge \forall x \in X (a\leq x))
+\]
+\end{definition}
+\begin{definition}
+The smallest number that bounds a set $X \subset \R$ from above is called the \textbf{least upper bound} of $X$ and denoted $\sup X$ (read "the supremum of X")
+\[
+(s = \sup X) := \forall x \in X ( (x\leq s) \wedge (\forall s' < s \exists x' \in X (s'<x')))
+\]
+\end{definition}
+
+\begin{definition}
+\[
+(i = \sup X) := \forall x \in X ( (i\leq x) \wedge (\forall i' > i \exists x' \in X (x'<i')))
+\]
+\end{definition}
+
+\begin{lemma}[The least upper bound principle]
+Every nonempty set of real numbers that is bounded from above has a unique least upper bound.
+\end{lemma}
+
+\begin{lemma}
+Every nonempty set of real numbers that is bounded from below has a unique greatest lower bound.
+\end{lemma}
+
+\section{The Most Important Classes of Real Numbers and Computational Aspects of Operations with Real Numbers}
+
+\end{document}
+\theend

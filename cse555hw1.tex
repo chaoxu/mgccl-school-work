@@ -1,0 +1,241 @@
+\documentclass[letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{latexsym}
+\usepackage{mathrsfs}
+\usepackage{eufrak}
+\usepackage[pdftex]{graphicx}
+\usepackage{color}
+\usepackage{mathrsfs}
+\usepackage[inline]{asymptote}
+\setlength{\topmargin}{-0.5in} \setlength{\textwidth}{6.5in}
+\setlength{\oddsidemargin}{0.0in} \setlength{\textheight}{9.1in}
+
+\newlength{\pagewidth}
+\setlength{\pagewidth}{6.5in} \pagestyle{empty}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\B}{\mathfrak{B}}
+\newcommand{\Z}{\mathbb{Z}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Example]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Remark]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\begin{asydef}
+usepackage("bm");
+texpreamble("\def\V#1{\bm{#1}}");
+\end{asydef}
+
+\title{CSE 555 Spring 2010 HW \#1}
+\date{}
+\author{Chao Xu}
+\begin{document}
+\maketitle
+\vspace{-.5in}
+\section*{(1)}
+If point $a,b$ has coordinate $(a_x,a_y)$ and $(b_x,b_y)$, then \[
+ BB(\{a,b\})
+= \{(x,y)| \min(a_x,b_x) \leq x\leq \max(a_x,b_x) \wedge \min(a_y,b_y) \leq
+y\leq
+\max(a_y,b_y)\}     
+                                                                \]
+The definition can be generalized so for $n$ points $S = \{p_1,p_2,\ldots p_n\}$
+with
+coordinates $S_x$ and $S_y$, then 
+\[
+ BB(S)
+= \{(x,y)| \min(S_x) \leq x\leq \max(S_x) \wedge \min(S_y) \leq
+y\leq \max(S_y)\}      
+                                                              \]
+$BB(S)$ contains all the points in $S$ and contains
+all $BB({p_i,p_j})$.
+\[
+RCH(S)\subseteq BB(S)
+\]
+\[
+\bigcup_{i,j} BB(\{p_i,p_j\}) \subseteq RCH(S)
+\]
+wlog, let $a, b, c, d$ be points
+with the largest $x$ coordinate, largest $y$, coordinate, smallest $x$
+coordinate, and smallest $y$ coordinate respectively.\\
+\[
+BB(\{a,b\}) = \{(x,y)| b_x \leq x\leq \max(S_x) \wedge a_y \leq y\leq
+\max(S_y)\}
+\]
+\[
+BB(\{b,c\}) = \{(x,y)| \min(S_x) \leq x\leq b_x \wedge c_y \leq y\leq
+\max(S_y)\}
+\]
+\[
+BB(\{c,d\}) = \{(x,y)| \min(S_x) \leq x\leq d_x \wedge \min(S_y) \leq y\leq
+c_y\}
+\]
+\[
+BB(\{d,a\}) = \{(x,y)| d_x \leq x\leq \max(S_y) \wedge \min(S_y) \leq y\leq
+a_y\}
+\]
+Which shows 
+\[BB(\{a, b\})\cup BB(\{b, c\}) \cup BB(\{c, d\}) \cup BB(\{d,a\})= BB(S)\]
+\[BB(S) \subseteq \bigcup_{i,j} BB(\{p_i,p_j\}) \subseteq RCH(S)\]
+\[BB(S) \subseteq RCH(S) \subseteq BB(S)\]
+Then \[RCH(S) = BB(S)\]
+
+The above holds even when $|\{a,b,c,d\}|< 4$.\\
+There exist a $O(n)$ algorithm to find
+$\max(S_x),\max(S_y),\min(S_x),\min(S_x)$, 
+Which is enough information to define $BB(S)$. $RCH(S)$ can be computed in
+$O(n)$ time.
+
+\section*{Extra Credit}
+\begin{center}
+\begin{asy}
+size(8cm,0);
+pen colour=black;
+
+pair O=(0,0);
+pair P=(0,1);
+pair Q=(0,-1);
+real r=1;
+real r2 = sqrt(2);
+
+path c1=circle(O,r);
+pair A=(-r2/2,r2/2);
+pair B=(r2/2,r2/2);
+pair A2=(-r2/2,-r2/2);
+pair B2=(r2/2,-r2/2);
+pair C=(0,r2);
+pair C2 = (0,-r2);
+pair i1 = (0,r2/2);
+pair i2 = (0,-r2/2);
+draw(c1);
+draw(A--B);
+draw(A2--B2);
+path c2 = circle((0,r2/2),r2/2);
+path c3 = circle((0,-r2/2),r2/2);
+path c4 = circle((0,0),r2);
+draw(c2);
+draw(c3);
+draw(c4);
+draw(C--C2);
+
+
+dot(A);label("$A$",A,NW);
+dot(B);label("$B$",B,NE);
+dot(A2);label("$A'$",A2,SW);
+dot(B2);label("$B'$",B2,SE);
+dot(O);label("$O$",O,SE);
+dot(P);label("$P$",P,NE);
+dot(Q);label("$Q$",Q,SE);
+dot(C);label("$C$",C,N);
+dot(C2);label("$C'$",C2,S);
+dot(i1);label("$O'$",i1,SE);
+dot(i2);label("$O''$",i2,NE);
+\end{asy}
+\end{center}
+
+Let $P,Q\in S$, then $MEB(\{P,Q\}) \subseteq CCH(S)$.
+Consider a process that will create a set $MEB(\{C,C'\})$ where $PQ\subset CC'$. Illustrated above. Find $A,B$ on $MEB(\{P,Q\})$ such that $AB \leq \sqrt{2}PQ$ and the midpoint $O'$ of $AB$ lies on $PQ$. Find the other pair $A',B'$ and $O''$ with the same property. Draw circle $O',O''$ with radius $AB/2$. Extend $PQ$ such that it intersect circle $O'$ and $O''$ at point $C$ and $C'$. I claim $PQ\subset CC'$. and $MEB(\{P,Q\})\subset MEB(\{C,C'\})$\\
+$MEB(\{C,C'\})\subseteq CCH(S)$ by definition.\\
+The above process can be repeated indefinitely, thus $CCH(S)$ contains a circle of infinite radius. $CCH(S)$ is the plane when $|S|\geq 2$.
+
+\section*{(3)}
+There exist a $O(n \log n)$ algorithm. \\
+Select a point $c_1$ on the convex hull
+(Point with the largest $x$-coordinate, if there is more than one, the point
+with
+largest $y$-coordinate).\\
+Sort $p_i$ by the slope of $c_1p_i$.\\
+Construct the convex hull. Let the points on the convex hull be $c_i$, ordered
+by
+the slope of $c_1c_i$. For all $p_k$ such that $c_1p_k$'s slope are between
+$c_1c_i$ and $c_1c_{i+1}$. Then $c_1, c_i$ and $c_{i+1}$ are the witness of
+$p_k$.
+
+\begin{proof}
+Ray $c_1p_k$ lies between angle $c_ic_1c_{i+1}$. Implies $p_k$ doesn't lie in
+triangle $c_ic_1c_{i+1}$
+only if it's on the halfplane of $c_ic_{i+1}$ that doesn't contain $c_1$.
+Suppose it
+is true, then $p_k$ is outside the convex hull. Which is a contradiction because
+$p_k$ is in the convex hull.
+\end{proof}
+
+\section*{(4)}
+\subsection*{a}
+Let $S$ and $T$ be two convex sets. The intersection is all points $p$ and $q$
+in both $S$ 
+and $T$. For any $p$ and $q$ in $S$, $pq$ is in $S$, 
+same goes for $p$ and $q$ in $T$. For any two points in both $S$ and $T$, 
+the segment formed by those points also lies in $S$ and $T$.
+It implies $S \cap T$ is convex.
+
+\subsection*{b}
+Let $\mathcal{P}$ be the smallest perimeter polygon contains set of points $P$. If it's
+non-convex. Suppose connect vertex $v_i$ and $v_{i+2}$, such that we have a
+segment not in
+$\mathcal{P}$, and $v_i,v_{i+1},v_{i+2}$ forms consecutive 2 edges of $\mathcal{P}$.
+We have a new polygon with all vertices of $\mathcal{P}$ except $v_{i+1}$. It form a polygon
+covering all points contained by $\mathcal{P}$, but has smaller parameter(by
+triangle inequality).
+A contradiction. The smallest polygon contains set of points $P$ must be convex.
+
+\subsection*{c}
+If $\mathcal{P}$ is a subset of some convex set, then that convex set contains
+all
+the points in $P$. Suppose convex set $P \subseteq C\subset \mathcal{P}$. Then there exist a point $p$
+in 
+$\mathcal{P}$ that's not in $C$. Partition the triangle by connect $v_1$ with
+every
+other vertice of $\mathcal{P}$. Point $p$ has to lie either on a triangle
+partition
+or inside a triangle partition of $\mathcal{P}$. Suppose it is on a edge of a
+triangle
+partition, then it lies on $v_iv_j$. $p$ must be in $C$ because $v_iv_j$ is
+contained in
+$C$. If $p$ lies inside a triangle $v_1v_iv_j$.
+Ray $pv_1$ meets $v_iv_j$ at point $p'$. $p'$ is contained in $C$(due to above
+result).
+$p$ must lie in $C$ since it is a point of the segment $p'v_1$.
+There can't be a point in $C$ that's not in $\mathcal{P}$. $\mathcal{P} \subseteq C$, a contradiction to $C \subset P$. For all convex
+set $C$ containing points of $P$. $\mathcal{P}\subseteq C$.
+
+\section*{(5)}
+\subsection*{a}
+Use sweep line algorithm from every direction. It stops when it touchs a point, and mark that point on the convex hull. If it touchs $k$ point at the same time, mark the largest segment from connecting 2 of those $k$ points as part of the convex hull. Each sweep line can either generate 1 point or straight line segments on the convex hull. If it generate 1 point, then it must be a point on the arc of a circle, because extreme points lies on the circles. The convex hull must consist of straight line segments and pieces of circles in $S$.
+
+\subsection*{b}
+\begin{lemma}
+For the any point $P$ on $CH(S)$ . There exist a unit circle lies inside the $CH(S)$ such that its center is 1 unit apart from $P$.
+\end{lemma}
+
+\begin{proof}
+If $P$ lies on the arc of a circle $C$, then $C$ is the unit circle that lies inside $CH(S)$.\\
+If $P$ lies on the line segment $AB$ tagent to circles $C_1,C_2\in S$. Then there exist $A'B'$ on $C_1$ and $C_2$ such that is parallel to $AB$. $A'B'$ is inside $CH(S)$ because $A'$ and $B'$ lies inside $CH(S)$. Connect $ABB'A'$ we have a rectangle with width 2 that lies inside $CH(S)$. $P$ lies on one side, then draw $P'$ on the other side such that $PP' = 2$. Then there exist a unit circle centered at the midpoint of $PP'$ and lies inside $CH(S)$.
+\end{proof}
+
+
+Suppose we already have a convex hull for $CH(S-\{C\})$ where $C$ is a circle on the convex hull. One can add $C$ into $S$ to find a new convex hull.\\
+If a circle can be on the convex hull for two times, then there must be a set of 4 points  $\{a,b,c,d\}$(ordered clockwise) on the circle, such that $a,b$ is on convex hull, $c,d$ is on convex hull and $b,c$, $d,a$ inside the convex hull.\\
+
+$ad$ and $cd$ have to lie on a convex hull for $CH(S-\{C\})$. If $k$ is a point on $ad$, then it's not possible to find a unit circle that lies inside $CH(S-\{C\})$ and tangent to $k$. A contradiction to the lemma. Thus there can't be 2 pieces of the same unit circle lies on $CH(S)$. 
+
+\subsection*{c}
+If the circle $C$ centered at a vertex $v_i$ of $CH(S')$. Bisect angle $v_{i-1}v_iv_{i+1}$ that lies outside $CH(S')$ by ray $v_ip$, where $p$ is on $C$. $p$ is a extreme point, There exist a sweep line that touchs $p$ before touch any other point. Thus $C$ appear on the boundary of convex hull $CH(S)$.\\
+Similar argument can be used to prove if $C$ is between two vertex $v_iv_{i+1}$. There is a sweep line touches $C$ while touch two circles that centers at vertex $v_i$ and $v_{i+1}$. \\
+The boundary of $CH(S)$ are 1 unit away from $CH(S')$ (The rectangle constructed in the proof of the lemma is the proof). It proves the center of the circle lies inside $CH(S')$ can't be on the boundary of $CH(S)$ unless it have a radius greater than 1.
+
+\subsection*{d}
+Find the $CH(S') = (v_1,\ldots,v_n)$ in $O(n\log n)$ steps. For each segment $v_iv_{i+1}$, translate it 1 unit to the outside of $CH(S')$ to the direction perpendicular to $v_iv_{i+1}$. Let those line segments be $v'_iv'_{i+1} \subset LCH(S) \subset CH(S)$. $LCH(S)$ can be constructed in $O(n)$ time. Draw arc of 1 unit radius centered at $v_i$, such that it touchs $v'_i$ and $v'_{i+1}$ and doesn't lie inside $CH(S')$. Those arcs be $ACH(S) \subset CH(S)$. $ACH(S)$ can be constructed in $O(n)$ time. $LCH(S)\cup ACH(S) = CH(S)$.\\
+The algorithm is in $O(n \log n)$.
+\end{document}
+\theend

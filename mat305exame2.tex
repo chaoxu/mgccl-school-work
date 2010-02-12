@@ -1,0 +1,81 @@
+\documentclass[letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{latexsym}
+\usepackage{mathrsfs}
+\usepackage{eufrak}
+\usepackage[pdftex]{graphicx}
+\usepackage{color}
+\usepackage{mathrsfs}
+\setlength{\topmargin}{-0.5in} \setlength{\textwidth}{6.5in}
+\setlength{\oddsidemargin}{0.0in} \setlength{\textheight}{9.1in}
+
+\newlength{\pagewidth}
+\setlength{\pagewidth}{6.5in} \pagestyle{empty}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\B}{\mathfrak{B}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\laplace}[1]{\mathscr{L}\{#1\}}
+\newcommand{\ilaplace}[1]{\mathscr{L}^{-1}\{#1\}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\fracnoline}[2]{\genfrac{}{}{0pt}{}{#1}{#2}}
+\newcommand{\rref}{\operatorname{rref}}
+\newcommand{\rank}{\operatorname{rank}}
+%\newcommand{\ker}{\operatorname{ker}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Example]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Remark]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\title{MAT305 Exam 2}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-.5in}
+1. Find the series solution for the equation $y''-x^3y = 0$ as a power series in a neighborhood of zero. By this I mean that you must find.\\
+(a) a recurrence relation for the coefficients of the power series, and\\
+(b) the radius of convergence for the solutions.\\
+
+\emph{Hint: When you write the solution, get it into the form}
+
+\[
+\phi(x) = \phi(0) \sum_{n=0}^{\infty} a_n x^{5n} + \phi '(0)x\sum_{n=0}^\infty b_n x^{5n}
+\]
+
+\emph{Then compute the radii of convergence for the individual series. }
+
+2. Consider the differential equation $xy''+y=0$.\\
+(a) Classify the point $x=0$ as ordinary, regular singular, or irregular singular.\\
+(b) Find the exponents of the singularity at $x=0$.\\
+(c) Find the general solution of the differential equation. (Here I hope you will find an explicit form of the coefficients, but the main goal is to find the recurrence relations.)\\
+
+3. Find the general solution to the differential equation $y'+y = e^{-3t} \cos(2t)$ by means of Laplace transforms.\\
+
+4. Suppose that $f(t)$ is piecewise continuous on $[0,\infty)$, of exponential order, and periodic with period $T$. Show that
+\[
+\laplace{f(t)} = \frac{1}{1-e^{-sT}} \int_0^T e^{-st}f(t)dt
+\]\\
+
+5. Find the general solution to
+\[
+y''+y = g(t)
+\]
+where $g(t)$ is the square wave: $g(t) = 1$ if $2k\leq t < 2k+1$ for an integer $k$. $g(t) = 0$ otherwise.\\
+
+6. Solve the following equation (in terms of both integrals and derivatives) using Laplace transforms. Note that the integral is a convolution.
+\[\phi'(t) + \int_0^t(t-\xi) \phi(\xi) d\xi = t\]
+\[\phi(0) = 0 \]
+\end{document}
+\theend

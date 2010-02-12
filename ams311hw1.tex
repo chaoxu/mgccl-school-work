@@ -1,0 +1,101 @@
+\documentclass[letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{latexsym}
+\usepackage{amsthm}
+\usepackage[pdftex]{graphicx}
+\usepackage{color}
+\usepackage{xspace}
+\usepackage[x11names, rgb]{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{snakes,arrows,shapes}
+
+\setlength{\topmargin}{-0.5in} \setlength{\textwidth}{6.5in}
+\setlength{\oddsidemargin}{0.0in} \setlength{\textheight}{9.1in}
+
+\newlength{\pagewidth}
+\setlength{\pagewidth}{6.5in} \pagestyle{empty}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newtheorem{lma}{Lemma}
+\author{Chao Xu}
+\title{AMS 311 Spring 2010: Homework \#1}
+\date{}
+\begin{document}
+\maketitle
+\vspace{-.5in}
+\section*{Problems}
+\subsection*{3}
+$20!$
+\subsection*{10}
+\paragraph*{(a)} $8!=40320$
+\paragraph*{(b)} $2\times 7!= 10080$
+\paragraph*{(c)} $2\times 4!=48$
+\paragraph*{(d)} $4!\times 5!=2880$
+\paragraph*{(e)} $4!\times 2^4 =384$
+\subsection*{18}
+${5 \choose 2} {6 \choose 2} {4 \choose 3}=600$
+\subsection*{25}
+If 4 players are distinguishable, then ${52 \choose 13,13,13,13} =
+\frac{52!}{(13!)^4}$. Else it's ${52 \choose 13,13,13,13} / 4! =
+\frac{52!}{(13!)^4 4!}$
+\section*{Theoretical Exercises}
+\subsection*{2}
+\[
+\sum_{i=1}^m n_i
+\]
+\subsection*{8}
+Let $N,M$ be disjoint sets. $|N| = n$, $|M| = m$. $R\subset (N \cup M)$ and
+$|R|=r$. Then the amount of $R$ is ${n+m \choose r}$.\\
+We can find $R_1 \subseteq R-M$ and $R_2 \subseteq R-N$ where $R_1 \cup R_2 =
+R$ and $R_1 \cap R_2 = \emptyset$. Let $|R_1|=i$, then $|R_2|=r-i$. $R_1$ is
+made from chose $i$ elements from $N$, and $R_2$ is made from chose $r-i$
+elements from $M$. Summing up ${n \choose i}{m \choose r-i}$ over all $i$ result
+the amount of possible $R$. Which is $\sum_{i=0}^r {n \choose i}{m \choose
+r-i}$.
+\subsection*{13}
+\begin{align}
+(1-1)^n&=\sum_{i=0}^n {n \choose i} 1^{n-i}(-1)^i\\
+&=\sum_{i=0}^n {n \choose i}(-1)^i\\
+&=0
+\end{align}
+
+\section*{Self-test problems and exercises}
+\subsection*{4}
+There are ${10 \choose 7}=120$ ways to answer 7 out of 10 questions.\\
+There are ${5 \choose 3}{5 \choose 4}+{5 \choose 4}{5 \choose 3}+{5 \choose 5}{5
+\choose 2}=110$ ways if she have to answer at least 3 out of the first 5
+questions.
+
+\subsection*{9}
+\paragraph*{(a)}
+${3n \choose 3}$
+\paragraph*{(b)}
+${n \choose 3}{3 \choose 1}$
+\paragraph*{(c)}
+${n \choose 2}{n \choose 1}{3 \choose 2}$
+\paragraph*{(d)}
+${n\choose 1}{n \choose 1}{n \choose 1}{3 \choose 3}$
+\paragraph*{(e)}
+${3n \choose 3} = {n \choose 3}{3 \choose 1}+{n \choose 2}{n \choose 1}{3
+\choose 2}+{n\choose 1}{n \choose 1}{n \choose 1}{3 \choose 3}$
+
+\subsection*{18}
+$3 \times 1 \times 1+ 3\times 1 \times 2 + 5 \times 2 \times 1 + 7\times 2
+\times 2 + 6\times 2 \times 3 = 83$
+
+\section*{Extra Credit}
+\subsection*{32*}
+$a_1+a_2+a_3+a_4+a_5+a_6 = 8$, where $a_i$ is the amount of people left at
+$i$-th floor. Thus it
+become ${13 \choose 5} = 1287$.\\
+For the second case, we try to find $a_1+a_2+a_3+a_4+a_5+a_6 = 3$ and
+$b_1+b_2+b_3+b_4+b_5+b_6 = 5$. Which are ${8 \choose 5}$ and ${10 \choose 5}$
+respectively. Since both are independent, the amount of ways are ${8 \choose
+5}{10 \choose 5} = 14112$
+\end{document}
+\theend

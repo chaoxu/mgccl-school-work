@@ -1,0 +1,45 @@
+[k] indicate it worth k points.
+
+Basic Number Theory
+
+[3]What is [IEQ]\phi(23)[/IEQ]?
+
+[3]What is [IEQ]\phi(15)[/IEQ]?
+
+[3]What is [IEQ]7^2 \mod 15[/IEQ]?
+
+[3]What is [IEQ]7^{642} \mod 15[/IEQ]?
+
+[4]What is [IEQ]7^{-1} \mod 15[/IEQ]?
+
+[4]Find integers [IEQ]s[/IEQ] and [IEQ]t[/IEQ] such that [IEQ]15s+23t = 1[/IEQ].
+
+Induction
+[15]Let [IEQ]x_0 = 1[/IEQ] and define [IEQ]x_n = \frac{1}{x_{n-1}+1}[/IEQ]. Prove by induction that, for all [IEQ]k \in \mathbb{N}[/IEQ], [IEQ]x_{2k} > \frac{\sqrt{5}-1}{2}[/IEQ] and [IEQ]x_{2k+1} < \frac{\sqrt{5}-1}{2}[/IEQ].
+
+Cardinality
+[15]Indicate whether each set if finite, countably infinite, or uncountable.
+(a) [EQ]\mathbb{N} \times \mathbb{Q}[/EQ]
+(b) [EQ]\prod_{n=0}^{\infty} \{0,1\}[/EQ]
+(c) [EQ]\{0,1\}^n[/EQ]
+(d) [EQ]\bigcup_{n=0}^{\infty} \{0,1\}^n[/EQ]
+(e) [EQ]\mathbb{Q} \cup \bigcup_{n=0}^{\infty} \{0,1\}^n [/EQ]
+
+Analyzing the Euclidean Algorithm
+[7]Prove that if [IEQ]b\leq a[/IEQ], then [IEQ] a\mod  b < \frac{a}{2}[/IEQ]
+
+[8]Assume computing [IEQ]a\mod b[/IEQ] takes 1 time unit. Let [IEQ]T(a,b)[/IEQ] be the amount of time it takes to compute [IEQ]\gcd(a,b)[/IEQ], when [IEQ]b\leq a[/IEQ], by using the fact that [IEQ]\gcd(a,b) = \gcd(b,a\mod b)[/IEQ], prove that [IEQ]T(a,b) \leq 1+ T(b,a/2)[/IEQ].
+
+[10]Assume that for any [IEQ]a>0[/IEQ], we can compute [IEQ]\gcd(a,0)[/IEQ] in 1 time unit. Prove by strong induction that, when [IEQ]ab \neq 0[/IEQ], [IEQ]T(a,b)\leq 2+ \log_2 ab[/IEQ]. (Hint: Remember that [IEQ]\log_2 \frac{x}{2} = \log_2 x -1[/IEQ])
+
+Implementing Multiplication
+Let [IEQ]x_1x_2[/IEQ] and [IEQ]y_1y_2[/IEQ] be [IEQ]2[/IEQ]-bit numbers, where [IEQ]x_i[/IEQ] is the [IEQ]i[/IEQ]th bit of [IEQ]x[/IEQ] and [IEQ]y_i[/IEQ] is the [IEQ]i[/IEQ]th bit of [IEQ]y[/IEQ]. For example, if [IEQ]x = 2[/IEQ], then [IEQ]x_1 = 1[/IEQ] and [IEQ]x_0 = 0[/IEQ].
+
+[2]Since [IEQ]x[/IEQ] can each be represented using only [IEQ]2[/IEQ] bits, what is the largest possible value for [IEQ]x[/IEQ]?
+
+[2]Let [IEQ]m = xy[/IEQ]. What's the max possible value for [IEQ]m[/IEQ]? How many bits do we need to represent [IEQ]m[/IEQ]?
+
+[16]Derive boolean logic formulas for each bit of m. You can use [IEQ]\wedge, \vee, \lnot[/IEQ] and [IEQ]\oplus[/IEQ](exclusive or) in your formulas.
+
+Graph Theory
+[15]Suppose an odd number of people attend a party. Prove that, no matter who shakes hands with whom. someone at the party must shake hands with an even number of people. (Hint: make a graph of who shakes hands; apply a theorem relating [IEQ]|E|[/IEQ] and the node degrees}

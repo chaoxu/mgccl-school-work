@@ -1,0 +1,255 @@
+\documentclass[letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{latexsym}
+\usepackage{mathrsfs}
+\usepackage{eufrak}
+\usepackage[pdftex]{graphicx}
+\usepackage{color}
+
+\setlength{\topmargin}{-0.5in} \setlength{\textwidth}{6.5in}
+\setlength{\oddsidemargin}{0.0in} \setlength{\textheight}{9.1in}
+
+\newlength{\pagewidth}
+\setlength{\pagewidth}{6.5in} \pagestyle{empty}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\B}{\mathfrak{B}}
+\newcommand{\U}{\mathfrak{U}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\image}{\operatorname{image}}
+\newcommand{\rref}{\operatorname{rref}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\nullity}{\operatorname{nullity}}
+\newcommand{\tr}{\operatorname{tr}}
+%\newcommand{\ker}{\operatorname{ker}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Example]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Remark]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\title{Linear Algebra(Bretscher) Chapter 7 Notes}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-.5in}
+\section{Dynamical Systems and Eigenvectors: An Introductory Example}
+\subsection{Eigenvectors and Eigenvalues}
+\begin{definition}
+Consider an $n \times n$ matrix $A$. A nonzero vector $\vec v$ in $\R^n$ is called an \textbf{eigenvector} of $A$ if $A\vec v$ is a scalar multiple of $vec v$, that is, if
+\[
+A\vec v = \lambda \vec v
+\]
+for some scalar $\lambda$. This scalar may be zero.
+The scalar $\lambda$ is called the \textbf{eigenvalue} associated with the eigenvector $\vec v$.
+\end{definition}
+
+\begin{theorem}
+The possible real eigenvalues of an orthogonal matrix are $1$ and $-1$.
+\end{theorem}
+
+\subsection{Dynamical Systems and Eigenvectors}
+\begin{theorem}[Discrete dynamical system]
+Consider the dynamical system
+\[
+\vec x(t+1) = A\vec x(t) with \vec x(0) = \vec x_0
+\]
+Then
+\[\vec x(t) = A^t\vec x_0\]
+suppose that we can find a basis
+\[
+\vec v_1, \vec v_2, \ldots, \vec v_n
+\]
+of $\R^n$
+consisting of eigenvectors of $A$, with
+\[ A\vec v_n = \lambda_n \vec v_n\]
+Find the coordinates $c_1, c_2, \ldots, c_n$ of vector $\vec x_0$ with respect to basis $\vec v_1, \vec v_2, \ldots, \vec v_n$:\\
+\[
+\vec x_0 = c_1\vec v_1 + c_2\vec v_2 + \ldots + c_n\vec v_n
+\]
+Then
+\[
+\vec x(t) = c_1\lambda_1^t\vec v_1 + c_2\lambda_2^t\vec v_2 + \ldots + c_n\lambda_n^t\vec v_n 
+\]
+\end{theorem}
+
+\begin{definition}
+Consider a discrete dynamic system
+\[\vec x(t+1) = A\vec x(t)\]
+initial value $\vec x(0) = \vec x_0$,
+where $A$ is a $2\times 2$ matrix. In this case, the state vector $\vec x(t) = \begin{bmatrix}
+x_1(t)\\
+x_2(t)
+\end{bmatrix}$
+ can be represented geometrically in the $x_1$-$x_2$-plane.
+The endpoints of state vectors $vec x(0) = \vec x_0, vec x(1) = A\vec x_0,\ldots$ form the \textbf{discrete trajectory} of this system, representing its evolution in the future.
+A \textbf{discrete phase portrait} of the system $\vec x(t+1) = A\vec x(t)$ shows trajectories for various initial states, capturing all the qualitatively different scenarios.
+\end{definition}
+
+\section{Finding the Eigenvalues of a Matrix}
+\begin{theorem}
+Consider an $n \times n$ matrix $A$ and a scalar $\lambda$. Then $\lambda$ is an eigenvalue of $A$ if and only if
+\[
+\det(A-\lambda I_n) = 0.
+\]
+This is called the \textbf{characteristic equation}(or the \textbf{secular equation}) of matrix A.
+\end{theorem}
+
+\begin{theorem}
+The eigenvalues of a triangular matrix are its diagonal entries.
+\end{theorem}
+
+\begin{definition}
+The sum of the diagonal entries of a square matrix $A$ is called the \textbf{trace} of $A$, denoted by $\tr A$
+\end{definition}
+
+\begin{theorem}
+\[
+\det(A - \lambda I_2) = \lambda^2 - (\tr A)\lambda + \det A = 0
+\]
+\end{theorem}
+
+\begin{theorem}
+If $A$ is an $n \times n$ matrix, then $\det(A-\lambda I_n)$ is a polynomial of degree $n$, of the form
+\[
+(-\lambda)^n + (\tr A)(-\lambda)^{n-1} + \ldots + \det A\\
+= (-1)^n\lambda^n + (-1)^{n-1}(\tr A)\lambda^{n-1} + \ldots + \det A
+\]
+This is called the \textbf{characteristic polynomial} of $A$, denoted by $f_A(\lambda)$.
+\end{theorem}
+
+\begin{definition}
+We say that an eigenvalue $\lambda_0$ of a square matrix $A$ has \textbf{algebraic multiplicity $k$} if $\lambda_0$ is a root of multiplicity $k$ of the characteristic polynomial $f_A(\lambda)$, meaning that we can write
+\[
+f_A(\lambda) = (\lambda_0 - \lambda)^k g(\lambda)
+\]
+for some polynomial $g(\lambda)$ with $g(\lambda_0)\neq 0$.
+\end{definition}
+
+\begin{theorem}
+An $n\times n$ matrix has at most $n$ real eigenvalues, even if they are counted with their algebraic multiplicities.\\
+If $n$ is odd, then an $n \times n$ matrix has at least one real eigenvalue. 
+\end{theorem}
+
+\begin{theorem}[Eigenvalues, determinant, and trace]
+If an $n\times n$ matrix $A$ has the eigenvalues $\lambda_1, \lambda_2, \ldots, \lambda_n$, listed with their algebraic multiplicities, then
+\[
+\det A = \lambda_1\lambda_2\ldots\lambda_n
+\]
+and
+\[
+\tr A = \lambda_1 + \lambda_2 + \ldots + \lambda_n
+\]
+\end{theorem}
+\section{Finding the Eigenvectors of a Matrix}
+\begin{definition}
+Consider an eigenvalue $\lambda$ of an $n\times n$ matrix $A$. Then the kernel of the matrix $A - \lambda I_n$ is called the \textbf{eigenspace} associated with $\lambda$, denoted by $E_\lambda$:
+\[
+E_\lambda = \ker(A - \lambda I_n) = \{\vec v in \R^n : A\vec v = \lambda \vec v\}
+\]
+\end{definition}
+
+\begin{definition}
+Consider an eigenvalue $\lambda$ of an $n \times n$ matrix $A$. The dimension of eigenspace $E_ \lambda = \ker(A - \lambda I_n)$ is called the \textbf{geometric multiplicity} of eigenvalue $\lambda$. Thus, the geometric multiplicity is the nullity of matrix $A - \lambda I_n$, or $n-\rank(A - \lambda I_n)$.
+\end{definition}
+
+\begin{definition}
+Consider an $n\times n$ matrix $A$. A basis of $\R^n$ consisting of eigenvectors of $A$ is called an \textbf{eigenbasis} for $A$.
+\end{definition}
+
+\begin{theorem}[Eigenbases and geometric multiplicities]
+\begin{enumerate}
+\item Consider an $n\times n$ matrix $A$. If we find a basis of each eigenspace of $A$ and concatenate all these bases, then the resulting eigenvecotrs $vec v_1, \ldots \vec v_s$ will be linearly independent. (Note that $s$ is the sum of the geometric multiplicities of the eigenvalues of $A$.)
+\item There exist an eigenbasis for an $n\times n$ matrix $A$ if (and only if) the geometric multiplicities of the eigenvalues add up to $n$ (meaning that $s = n$)
+\end{enumerate}
+\end{theorem}
+
+\subsection{Eigenvalues and Similarity}
+\begin{theorem}[The eigenvalues of similar matrices]
+Suppose matrix $A$ is similar to $B$. Then \\
+\begin{enumerate}
+\item Matrices $A$ and $B$ have the same characteristic polynomial, that is $f_A(\lambda) = f_B(\lambda)$.
+\item $\rank(A) = \rank(B)$ and $\nullity(A) = \nullity(B)$
+\item Matrices $A$ and $B$ have the same eigenvalues, with the same algebraic and geometric multiplicities.
+\item Matrices $A$ and $B$ have the same determinant and the same trace: $\det A = \det B$ and $\tr A = \tr B$
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+If $\lambda$ is an eigenvalue of a square matrix $A$, then\\
+(geometric multiplicity of $\lambda) \leq ($algebraic multiplicity of $\lambda$)
+\end{theorem}
+
+\section{Diagonalization}
+\begin{theorem}[The matrix of a linear transformation with respect to an eigenbasis]
+Consider a linear transformation $T(\vec x) = A \vec x$, where $A$ is a square matrix. Suppose $\mathfrak{D} = (\vec v_1,\vec v_2,\ldots,\vec v_n)$ is an eigenbasis for $T$, with $A\vec v_i = \lambda_i\vec v_i$. Then the $\mathfrak{D}$-matrix $D$ of $T$ is
+\[
+D = S^{-1}AS = 
+\begin{bmatrix}
+\lambda_1 & 0 & \ldots & 0\\
+0 & \lambda_2 & \ldots & 0\\
+\vdots & \vdots &\ddots &\vdots\\
+0 & 0 &\ldots & \lambda_n 
+\end{bmatrix}
+\]
+where
+\[
+S = 
+\begin{bmatrix}
+\vec v_1 & \vec v_2 & \ldots & \vec v_n
+\end{bmatrix}
+\]
+Matrix $D$ is diagonal, and its diagonal entries are the eigenvalues $\lambda_1, \lambda_2, \ldots, \lambda_n$ of $T$.
+\end{theorem}
+
+\begin{definition}
+An $n\times n$ matrix $A$ is called \textbf{diagonalizable} if $A$ is similar to some diagonal matrix $D$, that is, if there exists an invertible $n\times n$ matrix $S$ such that $S^{-1}AS$ is diagonal.
+\end{definition}
+
+\begin{theorem}[Eigenbases and diagonalization]
+\begin{enumerate}
+\item Matrix $A$ is diagonalizable if (and only if) there exists and eigenbasis for $A$.
+\item If an $n\times n$ matrix $A$ has $n$ distinct eigenvalues, then $A$ is diagonalizable.
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}[Diagonalization]
+Suppose we are asked to determine whether a given $n\times n$ matrix $A$ is diagonalizable. If so, we wish to find an invertible matrix $S$ such that $S^{-1}AS$ is diagonal.
+We can proceed as follows.
+\begin{enumerate}
+\item Find the eigenvalues of $A$, that is, solve the characteristic equation $f_A(\lambda) = \det(A - \lambda I_n) = 0$
+\item For each eigenvalue $\lambda$, find a basis of the eigenspace $E_\lambda = \ker(A - \lambda I_n)$.
+\item Matrix $A$ is diagonalizable if (and only if) the dimensions of the eigenspaces add up to $n$. In this case, we find an eigenbasis $\vec v_1, \vec v_2, \ldots, \vec v_n$ by concatenating the bases of the eigenspaces we found in last step. Let $S = \begin{bmatrix}
+\vec v_1& \vec v_2 & \ldots & \vec v_n
+\end{bmatrix}$. Then matrix $S^{-1}AS = D$ is diagonal, and the $i$th diagonal entry of $D$ is the eigenvalue $\lambda_i$ associated with $\vec v_i$.
+\end{enumerate}
+\end{theorem}
+
+\subsection{Powers of a Matrix}
+\begin{theorem}[Powers of a diagonalizable matrix]
+To compute the powers $A^t$ of a diagonalizable matrix $A$, first diagonalize A. Then $A = SDS^{-1}$ and $A^t = SD^tS^{-1}$.  To compute $D^t$, raise the diagonal entries of $D$ to the $t$th power. 
+\end{theorem}
+
+\subsection{The Eigenvalues of a Linear Transformation}
+\begin{definition}
+Consider a linear transformation $T$ from $V$ to $V$, where $V$ is a linear space. A scalar $\lambda$ is called an \textbf{eigenvalue} of $T$ if there exists a nonzero element $f$ of $V$ such that
+\[
+T(f) = \lambda f
+\]
+Such an $F$ is called an \textbf{eigenfunction} if $V$ consists of functions, and \textbf{eigenmatrix} if $V$ consists of matrices, and so on. In theoretical work, the inclusive term \textbf{eigenvector} is often used for $f$. \\
+Suppose that $V$ is finite dimensional. Then a basis $\mathfrak{D}$ of $V$ consisting of eigenvectors of $T$ is called an \textbf{eigenbasis} for $T$. We say that transformation $T$ is \textbf{diagonalizable} if the matrix $T$ with respect to some basis is diagonal.
+\end{definition}
+\end{document}
+\theend

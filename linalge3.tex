@@ -1,0 +1,306 @@
+\documentclass[letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{latexsym}
+\usepackage{mathrsfs}
+\usepackage{eufrak}
+\usepackage[pdftex]{graphicx}
+\usepackage{color}
+
+\setlength{\topmargin}{-0.5in} \setlength{\textwidth}{6.5in}
+\setlength{\oddsidemargin}{0.0in} \setlength{\textheight}{9.1in}
+
+\newlength{\pagewidth}
+\setlength{\pagewidth}{6.5in} \pagestyle{empty}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\B}{\mathfrak{B}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\image}{\operatorname{image}}
+\newcommand{\rref}{\operatorname{rref}}
+\newcommand{\rank}{\operatorname{rank}}
+%\newcommand{\ker}{\operatorname{ker}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Example]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Remark]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\title{Linear Algebra(Bretscher) Chapter 3 Notes}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-.5in}
+
+\section{Image and Kernel of a Linear Transformation}
+\begin{definition}
+The \textbf{image} of a function consist of all the values the function takes in its target space. If $f$ is a function from $X$ to $Y$, then
+\[ \image (f) = \{f(x): x \in X\} \]
+\[ = \{b \in Y:  b = f(x), x\in X\} \]
+\end{definition}
+
+\begin{theorem}[Image of a linear transformation]
+The image of a linear transformation $T(\vec x) = A\vec x$ is the span of the column vectors of A.
+\end{theorem}
+
+\begin{theorem}[Properties of the image]
+The image is a linear space.
+\end{theorem}
+
+\subsection{The kernel of a Linear Transformation}
+\begin{definition}
+The \textbf{kernel} of a linear transformation $T(\vec x) = A \vec x$ from $\R^m$ to $\R^n$ consists of all zeros of the transformation. In other words. Solutions to $T(\vec x) = A \vec x = \vec 0$.
+\end{definition}
+
+Note:\\
+$\im(T) = \{T(\vec x) : \vec x \in \R^m\}$ is a subset of the target space $\R^n$ of $T$.\\
+$\ker(T)=\{\vec x \in \R^m : T(\vec x) = 0\}$ is a subset of the domain $\R^m$ of $T$.\\
+
+\begin{theorem}
+The kernel is a linear space.
+\end{theorem}
+
+\begin{theorem}
+ $n \times m$ matrix $A$. Square matrix $B$\\
+\begin{enumerate}
+\item $\ker(A) = \{\vec 0\} \Leftrightarrow \rank(A) = m$
+\item $\ker(A) = \{\vec 0\} \Leftrightarrow m \leq n$
+\item $\ker(B) \{\vec 0\} \Leftrightarrow B$ is invertible
+\end{enumerate}
+\end{theorem}
+
+\subsection{Characterization of invertible matrices}
+For $n\times n$ matrix A to be invertible:
+\begin{enumerate}
+\item A is invertible.
+\item linear system $A\vec x = \vec b$ has a unique solution $\vec x$ for all $\vec b$ in $\R^n$.
+\item $\rref(A) = I_n$
+\item $\rank(A) = n$
+\item $\im(A) = \R^n$
+\item $\ker(A) = \{\vec 0\}$
+\end{enumerate}
+
+
+\section{Subspace of $\R^n$; Bases and Linear Independence}
+\begin{definition}
+A subset $W$ of the vector space $\R^n$ is called a (linear) \textbf{subspace} of $\R^n$ if it has the following three properties:
+\begin{enumerate}
+\item $W$ contains the zero vector in $\R^n$
+\item $W$ is closed under addition.
+\item $W$ is closed under scalar multiplication
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}[Image and the kernel are subspaces]
+If $T(\vec x) = A \vec x$ is a linear transformation from $\R^m$ to $\R^n$, then
+\begin{itemize}
+\item $ker(T) = ker(A)$ is a subspace of $\R^m$
+\item $image(T) = im(A)$ is a subspace of $\R^n$
+\end{itemize}
+\end{theorem}
+
+\begin{definition}
+Vectors $\vec v_1, \ldots, \vec v_m$ in $\R^n$
+\begin{enumerate}
+\item $\vec v_i$ is \textbf{redundant} if $\vec v_i$ is a linear combination of  $\vec v_1, \ldots, \vec v_{i-1}$
+\item $\vec v_1, \ldots, \vec v_m$ are \textbf{linearly independent} if non of them are redundant, else they are \textbf{linearly dependent}.
+\item  $\vec v_1, \ldots, \vec v_m$ form a \textbf{basis} of subspace $V$ of $\R^n$ if they span $V$ and are linearly independent and in $V$.
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}[Basis of the image]
+To construct a basis of the image of a matrix $A$. List all the column vectors of $A$, and omit the redundant vectors from the list.
+\end{theorem}
+
+\begin{theorem}[Linear independence and zero components]
+Vectors $\vec v_1, \ldots, \vec v_m$ in $\R^n$, If $\vec v_1$ is nonzero, and if each of the vectors $\vec v_i$($i\geq 2$) has a nonzero entry in a component where all the preceding vectors  $\vec v_1, \ldots, \vec v_{i-1}$ have a 0, then the vectors $\vec v_1, \ldots, \vec v_m$ are linearly independent.
+\end{theorem}
+
+\begin{definition}
+Vectors $\vec v_1, \ldots, \vec v_m$ in $\R^n$. An equation of the form
+\[
+c_1\vec v_1 + \ldots + c_m\vec v_m = \vec 0
+\]
+is called a (linear) \textbf{relation} among the vectors  $\vec v_1, \ldots, \vec v_m$. There is always the \textbf{trivial relation}, with $c_1 = \ldots = c_m = 0$. \textbf{Nontrivial relations} may or may not exist among the vectors $\vec v_1, \ldots, \vec v_m$.
+\end{definition}
+
+\begin{theorem}[Relations and linear dependence]
+$\vec v_1, \ldots, \vec v_m$ in $\R^n$ are linear dependent if there exist a trivial relation.
+\end{theorem}
+
+\begin{theorem}[Kernel and relations]
+The vectors in the kernel of an $n \times m$ matrix $A$ correspond to the linear relations among the column vectors $\vec v_1, \ldots, \vec v_m$ of $A$: The equation
+\[
+A\vec x = \vec 0
+\]
+means that
+\[
+x_1 \vec v_1 + \ldots + x_m \vec v_m = \vec 0
+\]
+The column vectors of $A$ are linearly independent iif $ker(A) = \{\vec 0\}$ or $rank(A) = m$.
+Thus there are at most $n$ linearly independent vectors in $\R^n$.
+\end{theorem}
+
+\subsection{Various characterizations of linear independence}
+For a list of $\vec v_1,\ldots, \vec v_m$ vectors in $\R^n$, the following statements are equivalent:
+
+\begin{enumerate}
+\item Vectors  $\vec v_1,\ldots, \vec v_m$ are linearly independent.
+\item None of the vectors  $\vec v_1,\ldots, \vec v_m$ is redundant.
+\item Non of the vectors $\vec v_i$ is a linear combination of other vectors.
+\item $c_1\vec v_1 + \ldots+ c_m \vec v_m = \vec 0 \Leftrightarrow c_1=\ldots=c_m=0$.
+\item $\ker [\vec v_1 \ldots \vec v_m] = \vec 0$.
+\item $\rank [\vec v_1 \ldots \vec v_m] = m$.
+
+\end{enumerate}
+\begin{theorem}[Basis and unique representation]
+$\vec v_1, \ldots, \vec v_m$ in a subspace $V$ of $\R^n$.
+It forms a basis of $V$ iif every vector $\vec v$ in $V$ can be expressed uniquely as a linear combination
+\[
+\vec v = c_1 \vec v_1 + \ldots + c_m \vec v_m
+\]
+\end{theorem}
+
+\section{The Dimension of a Subspace of $\R^n$}
+\begin{theorem}
+Consider vectors $\vec v_1, \ldots, \vec v_p$ and $\vec w_1, \ldots, \vec w_q$ in a subspace $V$ of $\R^n$. If the vectors $\vec v_1, \ldots, \vec v_p$ are linearly independent, and the vectors  $\vec w_1, \ldots, \vec w_q$ span $V$, then $q\geq p$.
+\end{theorem}
+
+\begin{definition}
+The number of vectors in a basis of $V$ is called the \textbf{dimension} of $V$, denoted by $\dim(V)$
+\end{definition}
+
+\begin{theorem}[Independent vectors and spanning vectors in a subspace of $\R^n$]
+Consider a subspace $V$ of $\R^n$ with $\dim(V) = m$.
+\begin{enumerate}
+\item We can find at most $m$ linearly independent vectors in $V$.
+\item We need at least $m$ vectors to span $V$
+\item If $m$ vectors in $V$ are linearly independent, then they form a basis of $V$
+\item If $m$ vectors in $V$ span $V$, then they form a basis of $V$.
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}[using rref to construct a basis of the image]
+To construct a basis of the image of $A$, pick the column vectors of $A$ that correspond to the columns of $\operatorname{rref}(A)$ containing the leading 1's.
+\end{theorem}
+
+\begin{theorem}[Dimension of the image]
+For any matrix $A$,
+\[
+\dim(\operatorname{im} A) = \rank(A)
+\]
+\end{theorem}
+
+\begin{theorem}[Rank-Nullity Theorem]
+For any $n\times m$ matrix $A$, the equation
+\[
+\dim(\operatorname{ker} A) + \dim(\im A) = m
+\]
+\end{theorem}
+
+\begin{theorem}[Finding bases of the kernel and image by inspection]
+Each redundant column as a linear combination of the preceding columns, $\vec v_i = c_1 \vec v_1 + \ldots + c_{i-1} \vec v_{i-1}$, write a corresponding relation, $-c_1\vec v_1 - \ldots - c_{i-1}\vec v_{i-1} + \vec v_i = \vec 0$, and generate the vector
+\[
+\begin{pmatrix}
+-c_1\\
+\vdots\\
+-c_{i-1}\\
+1\\
+0\\
+\vdots\\
+0
+\end{pmatrix}
+\]
+in the kernel of $A$. The vectors so constructed form a basis of the kernel of A. The nonredundant columns form a basis of the image of $A$.
+\end{theorem}
+
+\begin{theorem}
+The vectors $\vec v_1, \ldots, \vec v_n$ in $\R^n$ form a basis of $\R^n$ iif the matrix
+\[
+\begin{pmatrix}
+|& & |\\
+\vec v_1& \ldots & \vec v_n\\
+|& & |\\
+\end{pmatrix}
+\]
+is invertible
+\end{theorem}
+
+\section{Coordinates}
+\begin{definition}
+Consider a basis $\B= (\vec v_1, \vec v_2, \ldots, \vec v_m)$ of a subspace $V$ of $\R^n$. Any vector $\vec x$ in $V$ can be written uniquely as
+\[
+\vec x = c_1\vec v_1 + \ldots + c_m\vec v_m
+\]
+The scalars $c_1, c_2, \ldots, c_m$ are called the \textbf{$\B$-coordinates} of $\vec x$, and the vector
+\[
+\begin{bmatrix}
+c_1\\
+c_2\\
+\vdots\\
+c_m
+\end{bmatrix}
+\]
+is the \textbf{$\B$-coordinate vector} of $\vec x$, denoted by $[\vec x]_\B$.
+\end{definition}
+
+$\vec x = S [\vec x]_\B$, where $S = \begin{bmatrix}
+\vec v_1 & \vec v_2 & \ldots & \vec v_m
+\end{bmatrix}$
+
+\begin{theorem}[Linearity of Coordinates]
+If $\B$ is a basis of a subspace $V$ of $\R^n$, then
+\begin{enumerate}
+\item $[\vec x + \vec y]_\B = [\vec x]_\B+[\vec y]_\B$
+\item $[k \vec x]_\B = k [\vec x]_\B$
+\end{enumerate}
+where $\vec x$ and $\vec y$ are in $V$.
+\end{theorem}
+
+\begin{definition}
+The linear transformation $T$ from $\R^n$ to $\R^n$ and a basis $\B$ of $\R^n$. The $n\times n$ matrix $B$ that transforms $[\vec x]_\B$ into $[T(\vec x)]_\B$ is called the \textbf{$\B$-matrix} of $T$:
+\[
+[T(\vec x)]_\B = B[\vec x]_\B
+\]
+for all $\vec x$ in $\R^n$. We can construct $B$ column by column as follows: If $\B = (\vec v_1, \ldots, \vec v_n)$, then
+\[
+B =  \begin{bmatrix}
+[T(\vec v_1)]_\B & \ldots & [T(\vec v_n)]_\B
+\end{bmatrix}
+\]
+\end{definition}
+\begin{theorem}[Standard matrix versus $\B$-matrix]
+Linear transformation $T$ from $\R^n$ to $\R^n$ and a basis $\B = (\vec v_1, \ldots, \vec v_n)$ of $\R^n$. Let $B$ be the $\B$-matrix of $T$, and let $A$ be the standard matrix of $T$ (such that $T(\vec x) = A\vec x$ for all $\vec x$ in $R^n$). Then
+\[
+AS = SB, B=S^{-1}AS\text{, and }A = SBS^{-1}\text{, where }S = \begin{bmatrix}
+\vec v_1 & \vec v_2 & \ldots & \vec v_m
+\end{bmatrix}
+\]
+\end{theorem}
+\begin{definition}
+Consider two $n\times n$ matrices $A$ and $B$. We say that $A$ is \textbf{similar} to $B$ if there exists an invertible matrix $S$ such that
+\[
+AS = SB\text{, or }B = S^{-1}AS
+\]
+\end{definition}
+
+\begin{theorem}[Similarity is an equivalence relation]
+\begin{enumerate}
+\item An $n\times n$ matrix $A$ is similar to $A$ itself (reflexivity).
+\item If $A$ is similar to $B$, then $B$ is similar to $A$ (symmetry).
+\item If $A$ is similar to $B$ and $B$ is similar to $C$, then $A$ is similar to $C$ (transitivity).
+\end{enumerate}
+\end{theorem}
+\end{document}
+\theend

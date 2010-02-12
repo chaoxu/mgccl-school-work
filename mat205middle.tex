@@ -1,0 +1,338 @@
+\documentclass[letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{latexsym}
+\usepackage[pdftex]{graphicx}
+\usepackage{color}
+
+\setlength{\topmargin}{-0.5in} \setlength{\textwidth}{6.5in}
+\setlength{\oddsidemargin}{0.0in} \setlength{\textheight}{9.1in}
+
+\newlength{\pagewidth}
+\setlength{\pagewidth}{6.5in} \pagestyle{empty}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\curl}{\operatorname{curl}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Example]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Remark]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\title{Evil Notes}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-.5in}
+
+\begin{theorem}
+$f(x)$ is differentiable if
+\[
+\lim_{x\to x_0} \frac{f(x) - (f(x_0) + M(x-x_0))}{|x-x_0|} = 0
+\]
+Where M is the Jocabian Matrix.
+\end{theorem}
+
+\begin{theorem}
+Affine approximation a function f(x) are in the following form
+\[
+A(x) = M(x) + y
+\]
+Where $M(x)$ is the jacobian matrix.\\
+A way fo find it when $f$ is known.
+\[ A(x) = f(x_0) + f'(x_0)(x-x_0) \]
+\end{theorem}
+
+\begin{definition}
+The directional derivative is defined as
+\[
+\lim_{h\to 0} \frac{f(a+h\vec v) - f(a)}{h} = f'(a)\vec v
+\]
+also written as
+\[
+\frac{\partial f}{\partial u}(x) = f'(x) u
+\]
+where $u$ is a unit vector.\\
+\end{definition}
+
+\begin{theorem}
+To find $df$ at point $x$ on vector $\vec v$, we have
+\[
+f'(x) \vec v
+\]
+To find $df$ at point $x$, which the direction of $\vec v$, we have 
+\[
+f'(x) \frac{\vec v}{|\vec v|}
+\]
+\end{theorem}
+\begin{definition}[The gradient]
+\[
+\nabla f(x) = (\frac{\partial f}{\partial x_1}(x) \ldots \frac{\partial f}{\partial x_n}(x))
+\]
+\end{definition}
+\begin{theorem}
+\[
+(g(f(t)))' = \nabla g(f(t)) \cdot f'(t)
+\]
+It's a special case of the Chain Rule.
+\end{theorem}
+\begin{theorem}
+$\nabla f(x)$ is the direction where $f(x)$ increase most rapidly. $|\nabla f(x)|$ is the magnitude of the maxim increase.
+\end{theorem}
+\begin{theorem}
+Normal vector to $S$ at $x_0$ is $\nabla f(x_0)$.\\
+Tangent space to $S$ at $x_0$ is all $x$ such that
+\[
+\nabla f(x_0) \cdot(x-x_0) = 0
+\]
+\end{theorem}
+
+\begin{theorem}
+Jacobian matrix for polar and spherical
+\[
+\left( \begin{array}{cc}
+\cos(\theta) & -r\sin(\theta) \\
+\sin(\theta) & r\cos(\theta) \\
+\end{array} \right)
+\]
+
+\[ \left( \begin{array}{ccc}
+\sin \phi \cos \theta & r \cos \phi \cos \theta & -r\sin \phi \sin \theta \\
+\sin \phi \sin \theta & r\cos \phi \sin \ \theta & r\sin \phi \cos \theta \\
+\cos \theta & -r\sin \phi & 0 \end{array} \right)\] 
+
+\[
+\left( \begin{array}{c}
+x\\
+y\\
+\end{array} \right) = 
+\left( \begin{array}{c}
+r \cos \theta\\
+r \sin \theta\\ \end{array} \right)
+\]
+
+The G's
+\[
+\left( \begin{array}{cc}
+1&0\\
+0&r^2\\
+\end{array} \right)
+\]
+
+\[
+\left( \begin{array}{ccc}
+1&0&0\\
+0&r^2&0\\
+0&0&r^2 \sin^2\phi\\
+\end{array} \right)
+\]
+\end{theorem}
+
+\begin{theorem}
+\[\int_\gamma \nabla f \cdot dx = f(b) - f(a)\]
+Where $\gamma$ is a piecewise smooth curve that start and end at point $a$ and $b$. The path doesn't matter, thus we also have.
+\[\int_a^b \nabla f dx = \int_\gamma \nabla f \cdot dx\]
+\end{theorem}
+
+\begin{theorem}[Chain rule]
+\[(g(f(x)))' = g'(f(x))f '(x)\]
+\end{theorem}
+
+\begin{theorem}[Inverse Function Theorem]
+\[(f^{-1}(f(x_0)))' = (f'(x_0))^{-1}\]
+Inverse function exist locally in the neighborhood of $x_0$, if $f'(x_0)$ has a inverse.
+\end{theorem}
+
+\begin{theorem}[Implicit function theorem]
+If $F:\R^{n+m}\to \R^m$ for some $x_0$ in $R^n$, $y_0$ in $R^m$.
+\begin{enumerate}
+\item $F(x_0,y_0) = 0$
+\item $F_y(x_0,y_0)$ has an inverse
+\end{enumerate}
+Then $f: \R^n\to \R^m$ is defined implicitly on neighborhood $N$ of $x_0$, so $f(x_0) = y_0$, $F(x,f(x)) = 0$ for all $x$ in $N$.
+\end{theorem}
+
+\begin{theorem}[implicitly defined level set affine approximation]
+$F:\R^{n+m}\to \R^m$. If we have level set $F(x) = z_0$, $F$ differentiable at $x_0$, then
+\[A(x) = F(x_0) + F(x_0)(x-x_0)\]
+\[A(x) = z_0\]
+lead to
+\[ F'(x_0)(x-x_0) = 0\]
+Which is the tangent plane.
+\end{theorem}
+
+\begin{theorem}
+Tangent to level set $F(x) = z_0$ at $x_0$ exists, if and only is $F'(x_0)$ have $m$ linearly independent columns.
+\end{theorem}
+
+\begin{theorem}[Lagrange multiplier method]
+$G:\R^n\to \R^m$,$n>m$. Let coordinate function $G_i$($1\leq i\leq m$) such that $G_i(x_1,\ldots,x_n)=0$ at point $x_0$. $G'(x_0)$ has $m$ columns linearly independent.\\
+$x_0$ is a extreme value of $f:\R^n \to \R$ when restricted to $S$, then $x_0$ is critical point of 
+\[f+ \lambda_1 G_1 + \ldots + \lambda_m G_m\]
+or
+\[f'(x_0)+ \lambda_1 G_1'(x_0) + \ldots + \lambda_m G_m'(x_0) = 0\]
+\end{theorem}
+
+\begin{theorem}[General change of variable formula]
+For transformation $T$,
+\[
+\int_{T(R)} f dV = \int_{R} (f \circ T) |det T'| dV
+\]
+\end{theorem}
+
+\begin{theorem}[Line integral]
+\[
+\int_a^b F(g(t)) g'(t) dt
+\]
+Is the line integral of field $F$ over curve $g(t)$ is the curve.
+\end{theorem}
+
+\begin{definition}
+$\omega^p$ is the $p$-form.
+\end{definition}
+
+\begin{theorem}
+image $S = \partial R$ in $\R^n$.
+\[\int_S \omega^p - \int_R \omega^p_g (\frac{\partial g}{\partial u_1}, \ldots, \frac{\partial g}{\partial u_p}) dV\]
+\end{theorem}
+
+\begin{definition}[Exterior derivatives]
+The exterior derivative $d$ of a $k$-form $\omega$, denoted $d\omega$, takes a $k+1$-parallelogram and returns a number, as follows:
+\[d\omega(P_x^0(v_1,\ldots,v_{k+1})) = \lim_{h\to 0}\frac{1}{h^{k+1}} \int_{\partial P_x^0(hv_1,\ldots,hv_k+1)}\omega\]
+\end{definition}
+
+\begin{theorem}[Computing the exterior derivative of a $k$-form]
+\[\omega = \sum_{1\leq i_1<\ldots< i_k\leq n} a_{i_1,\ldots,i_k} dx_{i_1}\wedge \ldots \wedge dx_{i_k} \]
+\[
+d\omega = \sum_{1\leq i_1<\ldots< i_k\leq n} (da_{i_1,\ldots,i_k}) dx_{i_1}\wedge \ldots \wedge dx_{i_k} 
+\]
+\end{theorem}
+
+\begin{theorem}[Green's Theorem]
+Let $\curl F(x) = \frac{\partial F_2}{\partial x_1} - \frac{\partial F_1}{\partial x_2}$
+\[
+\int_D(\frac{\partial F_2}{\partial x_1} - \frac{\partial F_1}{\partial x_2}) dx_1 dx_2 = \int_D \curl F dA = \int_\gamma F_1dx_1+F_2 dx_2
+\]
+$\gamma$ is the curve that bounds the surface $D$.
+
+\end{theorem}
+
+\begin{definition}
+A vector field $F$ for which there is a real-valued function $f$ such that $F = \nabla f$ is called a gradient field. In that case $f$ is called the potential of $F$.
+\end{definition}
+
+\begin{theorem}
+Let $F$ be a continuous vector field defined in a polygonally connected open set $D$ of $\R^n$, then
+\begin{enumerate}
+\item $F$ is the gradient of a function, $f$, continuously differentiable in $D$.
+\item The line integral of $F$ over a path from $x_1$ to $x_2$ is independent of the piecewise smooth curve $\gamma$ from $x_1$ to $x_2$, and so can be written
+\[
+\int_{x_1}^{x_2} F \cdot dx
+\]
+\item For every piecewise smooth close curve lying in $D$
+\[
+\oint F\cdot dx = 0
+\]
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+Let $R$ be an open coordinate rectangle in $\R^n$, and let $F$ be a continuously differentiable vector field on $R$. If $F'(x)$, the Jacobian matrix of $F$, is symmetric on $R$, then $F$ is a gradient field.
+\end{theorem}
+
+\begin{theorem}[Flux]
+\[
+\Phi = \int_S F \cdot dS = \int_D F \cdot d\omega
+\]
+\end{theorem}
+
+\begin{definition}
+$g(u,v)$ is a parametrization of surface $S$.
+Area
+\[
+\sigma(S) = \int_D |\frac{\partial g}{\partial u}(u,v) \times \frac{\partial g}{\partial v}(u,v)|du dv
+\]
+area Integral
+\[
+\int_S p d\sigma = \int_D p(g(u,v))|\frac{\partial g}{\partial u}(u,v) \times \frac{\partial g}{\partial v}(u,v)|du dv
+\]
+\end{definition}
+
+\begin{definition}
+Surface integral of $F$ over $S$. Coordinate $g(u,v)$
+\[
+\int_S F\cdot dS
+\]
+\[
+=\int_D F(g(u,v))\cdot (\frac{\partial g}{\partial u}(u,v) \times \frac{\partial g}{\partial v}(u,v))du dv
+\]
+\[
+=\int_D F_1 \frac{\partial(x_2,x_3)}{\partial(u,v)} +  F_2 \frac{\partial(x_3,x_1)}{\partial(u,v)}+ F_3 \frac{\partial(x_1,x_2)}{\partial(u,v)}
+\]
+\[
+=\int_D F_1 dx_2 dx_3 + F_2 dx_3dx_1+F_3 dx_1 dx_2
+\]
+\end{definition}
+
+\begin{theorem}
+\[
+\int_S \curl F\cdot dS = \oint_{\partial S} F\cdot dx
+\]
+\end{theorem}
+
+\begin{definition}
+\[
+\curl F(x) = \left(\frac{\partial F_3}{\partial x_2}(x)-\frac{\partial F_2}{\partial x_3}(x),
+\frac{\partial F_1}{\partial x_3}(x)-\frac{\partial F_3}{\partial x_1}(x),
+\frac{\partial F_2}{\partial x_1}(x)-\frac{\partial F_1}{\partial x_2}(x)\right)
+\]
+\end{definition}
+
+\begin{theorem}
+\[
+\int_R \operatorname{div} F dV = \int_{\partial R} F\cdot dS
+\]
+\[
+\int_R (\frac{\partial F_1}{\partial x_1}+ \frac{\partial F_2}{\partial x_2}+ \frac{\partial F_3}{\partial x_3}) dx_1dx_2dx_3
+= \int_{\partial R} F_1 dx_2 dx_3 + F_2 dx_3 dx_1 + F_3 dx_1 dx_2
+\]
+\end{theorem}
+
+\begin{theorem}[General Stokes' theorem]
+\[
+\int_M d\omega = \oint_{\partial M} \omega
+\]
+\end{theorem}
+
+\begin{theorem}
+Work form, or circulation form is
+\[
+\omega = F_1 dx + F_2 dy + F_3 dz
+\]
+Flux form is
+\[
+\omega = F_1 dy\wedge dz - F_2 dx\wedge dz + F_3 dx\wedge dy
+\]
+Volume form for surface in coordinate $u,v$ is
+\[
+\sqrt{g} du\wedge dv
+\]
+where $g = det (g_{ij})$.\\
+Density form for a density $f(u,v)$ is $f$ times the volume form.
+\end{theorem}
+
+
+\end{document}
+\theend

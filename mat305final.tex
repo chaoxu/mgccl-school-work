@@ -1,0 +1,101 @@
+\documentclass[letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{latexsym}
+\usepackage{mathrsfs}
+\usepackage{eufrak}
+\usepackage[pdftex]{graphicx}
+\usepackage{color}
+\usepackage{mathrsfs}
+\setlength{\topmargin}{-0.5in} \setlength{\textwidth}{6.5in}
+\setlength{\oddsidemargin}{0.0in} \setlength{\textheight}{9.1in}
+
+\newlength{\pagewidth}
+\setlength{\pagewidth}{6.5in} \pagestyle{empty}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\B}{\mathfrak{B}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\laplace}[1]{\mathscr{L}\{#1\}}
+\newcommand{\ilaplace}[1]{\mathscr{L}^{-1}\{#1\}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\fracnoline}[2]{\genfrac{}{}{0pt}{}{#1}{#2}}
+\newcommand{\rref}{\operatorname{rref}}
+\newcommand{\rank}{\operatorname{rank}}
+%\newcommand{\ker}{\operatorname{ker}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Example]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Remark]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\title{MAT305 Final Exam}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-.5in}
+\indent \\
+1.(a) Find the general solution to the nonlinear (but separable) differential equation
+\[
+y' + t^2 y^2 = 0
+\]
+(b) Find the particular solution satisfying $y(0) = y_0$.\\
+\\
+2. Solve the differential equation
+\[
+y' + 3t^2y = e^{-t^3}
+\]
+using integrating factors.\\
+\\
+3. Solve the initial value problem
+\[y'' - y = e^t\]
+\[y(0) = 1\]
+\[y'(0) = 0\]
+using any method of your choosing.\\
+\\
+4. Find the power series solution $\phi(t)$ to the differential equation
+\[
+y''' + y = 0
+\]
+satisfying $\phi(0) = 1$, $\phi'(0) = \phi''(0) = 0$.\\
+\\
+5. Find the same solution of
+\[
+y''' + y = 0
+\]
+using Laplace transforms. (Recall that $a^3+b^3 = (a+b)(a^2 - ab + b^2)$)\\
+\\
+6. Solve the following eigenvalue problem. (Read the boundary conditions CAREFULLY!) Describe the physical problem involving the heat equation to which such an eigenvalue problem might apply.
+\[
+y'' + \lambda y = 0
+\]
+\[
+y(0) = y'(L) = 0
+\]\\
+\\
+7. Find the Fourier series for the following 2-periodic function
+\[
+f(x) = -1-x
+\]
+if $-1<x\leq 0$
+\[
+f(x) = 1-x
+\]
+if $0<x\leq 1$
+\[
+f(x+2) = f(x)
+\]\\
+\\
+8. The ends of a thin rod of length two are insulated. If the temperature of the bar at time zero is $f(x) = 1-|x-1|$ ($0\leq x \leq 2$), and the thermal diffusivity (a.k.a. $\alpha^2$ is one, state and solve the initial value problem describing the temperature of the bar over time.
+\end{document}
+\theend

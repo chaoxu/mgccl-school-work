@@ -1,0 +1,88 @@
+\documentclass[letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{latexsym}
+\usepackage[pdftex]{graphicx}
+\usepackage{color}
+
+\setlength{\topmargin}{-0.5in} \setlength{\textwidth}{6.5in}
+\setlength{\oddsidemargin}{0.0in} \setlength{\textheight}{9.1in}
+
+\newlength{\pagewidth}
+\setlength{\pagewidth}{6.5in} \pagestyle{empty}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Example]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Remark]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\newenvironment{problem}[1][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\title{Zorich Chapter 2: The Real Numbers Notes}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-.5in}
+
+\begin{problem}[Problem 1]
+The Fibonacci sequence is defined as follows: $F_1=F_2=1$, and for
+$n>2$, $F_n=F_{n-1}+F_{n-2}$.  What is $F_n\bmod 2$?  Prove your
+answer.
+\end{problem}
+
+\begin{problem}[Problem 2]
+Prove that $\Sigma_{i=1}^{n}i^3=\left[\frac{n(n+1)}{2}\right]^2$.
+\end{problem}
+
+\begin{problem}[Problem 3]
+Prove that, if $x\not=1$, then $\Sigma_{i=0}^{n}x^i=\frac{x^{n+1}-1}{x-1}$.
+\end{problem}
+
+\begin{problem}[Problem 4]
+Let $x_1=\sqrt{1+1}$ and define $x_n=\sqrt{1+x_{n-1}}$ for all $n>1$.
+Prove that $x_i$ is irrational for all $i$.  You may assume that
+$\sqrt{2}$ is irrational.
+\end{problem}
+
+
+\begin{problem}[Problem 5]
+Consider a tournament of $n$ teams in which each team plays every
+other team exactly once.  Show that after the tournament completes, we
+can always arrange the teams in some order $T_1, \ldots, T_n$ such
+that $T_i$ beat $T_{i-1}$ for all $2\leq i\leq n$.
+\end{problem}
+
+
+\begin{problem}[Problem 6]
+Consider the following game.  The game begins with several piles of
+tokens between the players, and each player has an unlimited supply of
+tokens.  The players take turns and, on their turn, a player can take
+1 token from a pile, say pile $i$, and may place any number of tokens
+on the piles to the left of pile $i$.  The winner is the player that
+draws the last token.  Prove that the game must eventually end.
+
+More precisely, the game begins with $n$ piles of coins.  On each
+turn, the current player selects a non-empty pile $i$ and removes one
+token from that pile and places tokens on piles $j>i$.  Players cannot
+create new piles.
+\end{problem}
+
+
+
+\end{document}
+\theend

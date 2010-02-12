@@ -1,0 +1,723 @@
+\documentclass[letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{latexsym}
+\usepackage{mathrsfs}
+\usepackage{eufrak}
+\usepackage[pdftex]{graphicx}
+\usepackage{color}
+\usepackage{mathrsfs}
+\setlength{\topmargin}{-0.5in} \setlength{\textwidth}{6.5in}
+\setlength{\oddsidemargin}{0.0in} \setlength{\textheight}{9.1in}
+
+\newlength{\pagewidth}
+\setlength{\pagewidth}{6.5in} \pagestyle{empty}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\B}{\mathfrak{B}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\laplace}[1]{\mathscr{L}\{#1\}}
+\newcommand{\ilaplace}[1]{\mathscr{L}^{-1}\{#1\}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\fracnoline}[2]{\genfrac{}{}{0pt}{}{#1}{#2}}
+\newcommand{\rref}{\operatorname{rref}}
+\newcommand{\rank}{\operatorname{rank}}
+%\newcommand{\ker}{\operatorname{ker}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Example]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Remark]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\begin{document}
+\section{First Order DE}
+\subsection{Separable Equations}
+$\frac{dy}{dx} = H(x,y)$ is separable if $\frac{dy}{dx} = g(x)h(y) = \frac{g(x)}{f(y)}$
+
+$f(y)\frac{dy}{dx} = g(x)$,then integrate both side, $\int{f(y) dy} = \int{g(x) dx}$, then solve for $y$.
+
+
+\subsection{Linear first order DE}
+$\frac{dy}{dx} + P(x) y = Q(x)$
+\\
+solution:\\
+1. find a integrate factor $\mu(x) = e^{\int P(x) dx}$\\
+2. multiply both side, reconize left side is the derivative of the other side.\\
+3. $\mu(x)y(x) = \int{\mu(x)Q(x)dx} + c$\\
+4. solve for $y(x)$\\
+
+\[
+y(x) = \frac{\int{\mu(x) Q(x) dx} + c}{\mu(x)}
+\]
+
+\newtheorem{thm}{Theorem}
+\begin{thm}[Existence and Uniqueness of solutions]
+Suppose that both the function $f(x,y)$ and its partial derivative $D_yf(x,y)$ are continuous on some rectangle $R$ in the $xy$-plane that contains the point $(a,b)$ in its interior. Then, for some open interval I containing the point $a$, the initial value problem
+\[
+\frac{dy}{dx} = f(x,y), y(a) = b
+\]
+has one and only one solution that is defined on the interval $I$.
+\end{thm} 
+
+\begin{thm}[The linear first-order equations]
+If the functions $P(x)$ and $Q(x)$ are continous on the open interval $I$ containing the point $x_0$, then the initial value problem
+\[
+\frac{dy}{dx} + P(x)y = Q(x) , y(x_0) = y_0
+\]
+has a unique solution $y(x)$ on $I$, given by the formula in with an appropirate value of $C$.
+\end{thm}
+ 
+\subsection{Substiution Methods}
+$\frac{dy}{dx} = f(x,y)$\\
+solution: find a $v = \alpha(x,y)$, such that\\
+$y = \beta(x,v)$\\
+then use the chain rule\\
+\[\frac{dy}{dx} = \frac{\partial \beta}{\partial x}\frac{dx}{dx} + \frac{\partial \beta}{\partial v} \frac{dv}{dx} = \beta_x + \beta_y\frac{dv}{dx}\]
+
+$D_x(x,v)$ and $\beta_v(x,v)$ are known functions.\\
+solve for $\frac{dv}{dx} = g(x,v)$\\
+we can solve $\frac{dv}{dx} = g(x,v)$ $v = v(x)$ is a solution, then $y = \beta(x, v(x))$ is the solution.\\
+
+\subsubsection{Solveable by subsution}
+$\frac{dy}{dx} = F(ax+by+c)$, $v = ax+by+c$\\
+$\frac{dy}{dx} = F(\frac{y}{x}$, $v = \frac{y}{x}$ (Homogeneous equations)\\
+$\frac{dy}{dx} + P(x)y = Q(x) y^n$, $v = y^{1-n}$ (Bernoulli Equations)\\
+
+
+\subsection{Exact Differential Equations}
+$F(x,y(x)) = C$ or $\frac{\partial F}{\partial x} + \frac{\partial F}{\partial y} \frac{dy}{dx} = 0$ or $M(x,y) + N(x,y)\frac{dy}{dx} = 0$
+or $M(x,y) dx + N(x,y)dy = 0$
+
+if there exist $F(x,y)$ such that $\frac{\partial F}{\partial x} =M$ and $\frac{\partial F}{\partial y} =N$. $F(x,y) = C$ is exact.
+
+$dF = F_x dx + F_ydy$ of $F_x(x,y) = M$ and $F_y(x,y)=N$\\
+Generally, solving it by setting\\
+$F_x(x,y) = M$\\
+and we have $F(x,y) = \int{ M dx} + h(y)$\\
+Then find $F_y(x,y) = N$, thus help us finding $h(y)$, substute it back and we have $F(x,y)$\\
+$\frac{\partial M}{\partial y} = F_{xy} = F_{yx} = \frac{\partial N}{\partial x}$ is necessery condition for $Mdx + Ndy = 0$\\
+
+\subsection{Reducible Second-Order Equations}
+Solve $F(x,y',y'') = 0$\\
+$p = y'$, $y'' = \frac{dp}{dx}$\\
+$F(x,p,p')=0$\\
+$y(x) = \int{p(x,C_1) dx + C_2}$\\
+
+Solve $F(y,y',y'') =0$\\
+$p=y'$, $y''=p\frac{dp}{dy}$\\
+
+$F(y,p,p\frac{dp}{dy}) = 0$\\
+Find $p(y,C_1)$\\
+then $x(y) = \int{\frac{dy}{p(y,C_1)} + C_2} = \int{\frac{1}{p}dy}$\\
+
+\section{Higher Order Linear Equations}
+\subsection{Homogeneous Second-Order Linear Equations}
+$y'' + B(x)y'+C(x)y = 0$\\
+
+\subsubsection{Principle of superposition for Homogeneous equations}
+Let $y_1$ and $y_2$ be two solutions of the homogeneous linear equation on the interval $I$. If $c_1$ and $c_2$ are constants, then the linear combination $y=c_1y_1 + c_2y_2$ is also a solution of the equation on $I$.
+
+\begin{thm}[Existence and uniqueness of Linear Equations]
+Suppose that the function $p$, $q$ and $f$ are continous on the open interval $I$ containing the point $a$. Then, given any two number $b_0$ and $b_1$, the equation
+\[
+y''+p(x)y' + q(x)y = f(x)
+\]
+has a unique (that is, one and only one) solution on the entire interval $I$ that satisfies the initial conditions.
+\[
+y(a) = b_0, y'(a) =b_1
+\]
+\end{thm}
+
+\begin{thm}[Wronskain of Solutions]
+Suppose that $y_1$ and $y_2$ are two solutions of the homogeneous second-order linear equation.
+\[
+y'' + p(x)y' + q(x)y = 0
+\]
+on an open interval $I$ on which $p$ and $q$ are continous.
+(a) If $y_1$ and $y_2$ are linearly dependent, then $W(y_1,y_2) \equiv 0$ on $I$.
+(b) If $y_1$ and $y_2$ are linearly independent, then $W(y_1, y_2) \neq 0$ at each point of $I$.
+\end{thm}
+
+
+\begin{thm}[General solutions of Homogeneous Equations]
+Let $y_1$ and $y_2$ be two linearly independent solutions of the homogeneous equation
+\[
+y'' + p(x)y' + 	q(x)y=0
+\]
+with $p$ and $q$ continuous on the open interval $I$. If $Y$ is any solution whatsoever on $I$, then there exist number $c_1$ and $c_2$ such that
+\[
+Y(x) = c_1y_1(x) + c_2y_2(x)
+\]
+for all $x$ in $I$
+\end{thm}
+
+\begin{thm}[Abel's Theorem]
+If $y_1$ and $y_2$ are solutions of the differential equation
+\[
+y''+p(x)y'+q(x)y = 0
+\]
+where $p$ and $q$ are continous on an open interval $I$, then the Wronskian $W(y_1,y_2)(x)$ is given by
+\[
+W(y_1,y_2)(x) = c e^{-\int{p(x)dx}}
+\]
+where c is a certain constant that depends on $y_1$ and $y_2$, but not on $x$.
+\end{thm}
+
+\subsection{Linear Second-Order Equations with Constant Coefficients}
+\[
+ay''+by'+cy=0
+\]
+We look for solutions $r_1$ and $r_2$ to $ar^2+br+c=0$ ,then $y(x) = c_1e^{r_1x} + c_2e^{r_2x}$ is the general solution.
+
+If there are repeated roots, then $y(x) = (c_1+c_2x)e^{r_1x}$
+
+\subsection{General Solution of nth-Order Linear Equations}
+$y^{(n)} + p_1(x)y^{(n-1)} + \cdots + p_{n-1}(x)y' + p_n(x)y = 0$ is the homogeneous linear equation associated with the following equation $y^{(n)} + p_1(x)y^{(n-1)} + \cdots + p_{n-1}(x)y' + p_n(x)y = f(x)$
+Let $y_1,y_2,\ldots,y_n$ be $n$ solutions of the homogeneous linear equation of order $n$ on the interval $I$. If $c_1, c_2, \ldots, c_n$ are constants, then the linear combination
+\[
+y = c_1y_1 + c_2y_2 + \cdots + c_ny_n
+\]
+is also a solution on $I$
+
+General solutions of Homogeneous Equations are similar to the one for 2nd order DE.
+\subsection{Initial value problem}
+Suppose that the function $p_1, p_2, \ldots, p_n$, and $f$ are continous on the open interval $I$ containing the point $a$, Then, given $n$ numbers $b_0, b_1, \ldots, b_n$, the $n$th-order linear equation
+ $y^{(n)} + p_1(x)y^{(n-1)} + \cdots + p_{n-1}(x)y' + p_n(x)y = f(x)$
+has a unique solution on the entire interval $I$ that satisfies the $n$ initial condisions.
+$y(a) = b_0, y'(a) = b_1, \ldots, y^{(n-1)}(a) = b_{n-1}$
+
+\subsection{Linear Independent}
+If $c_1f_1+c_2f_2 + \cdots + c_nf_n = 0$ on the interval $I$, then they are linearly dependent on interval $I$.
+
+The Wronskian of the $n$ function $= 0$, then they are linearly dependent. It is a generalization of the Wronskain of solution for 2nd order differential equations.
+
+\subsection{Reduction of Order}
+$y''+p(x)y'+q(x)y=0$, and $y_1$ is a solution, then the other solution $y_2 = v(x)y_1(x)$. Where $y_1v'' + (2y_1'+py_1)v' = 0$. Thus it is reduced to first order.
+
+\subsection{Homogeneous Equations with Constant Coefficients}
+$a_ny^{(n)} + a_{n-1}y^{(n-1)} + \cdots + a_2y'' + a_1y'+a_0y = 0$ can be solved similarly as the 2nd order version.
+For distinct real roots, the result is
+$y(x) = c_1e^{r_1x}+c_2e^{r_2x} + \cdots + c_ne^{r_nx}$
+
+\paragraph{With repeated roots}
+
+If it have root $r$ of multiplicity $k$, then the part of the general solution for $r$ is the form
+\[
+(c_1+c_2x+c_3x^2 + \cdots + c_kx^{k-1})e^{rx}
+\]
+
+\paragraph{Complex roots}
+If there is a unrepeated pair of complex conjugate roots $a \pm bi$, then the corresponding part of a general solution has the form
+\[
+e^{ax}(c_1\cos(bx)+c_2\sin(bx))
+\]
+
+\paragraph{Repeated Complex Roots}
+if $a \pm bi$ has multiplicity $k$, then the part of the general solution is 
+\[
+\sum_{p=0}^{k-1} x^p e^{ax}(c_i \cos(bx) + d_i \sin(bx))
+\]
+
+
+\subsection{Nonhomogeneous Equations}
+\[
+y^{(n)} + p_1(x)y^{(n-1)} + \cdots + p_{n-1}(x)y' + p_n(x)y = f(x)
+\]
+
+Suppose there is a solution for the above for a specific solution, $y_p$. $Y$ is any other solution. $Y = y_c+y_p$, where $y_c$ is the solution of the associated homogeneous equation. $y_c$ is a complementary function of the nonhomogeneous equation.
+
+
+\subsubsection{Solution of Nonhomogeneous Equations}
+
+Let $y_p$ be a particular solution of the nonhomogeneous equation on an open interval $I$ where the function $p_i$ and $f$ are continous. Let $y_1, y_2, \ldots, y_n$ be linearly independent solutions of the associated homogeneous equation. If $Y$ is any solution whatsoever on $I$ for the nonhomogeneous equation, then there exist numbers $c_1, c_2, \ldots, c_n$ such that
+\[
+Y(x) = c_1y_1(x) + c_2y_2(x) + \cdots + c_ny_n(x) + y_p(x)
+\]
+for all $x$ in $I$
+
+\subsubsection{The method of undetermined coefficients}
+
+
+\paragraph{Rule 1}
+Suppose that no term appearing either in $f(x)$ or in any of its derivatives satisfies the associated homogeneous equation $Ly=0$. Then take as a trial solution for $y_p$ a linear combination of all linearly independent such terms and their derivativees. Then determine the coefficients by substitution of this trial solution into the nonhomogeneous equation $Ly = f(x)$
+
+\paragraph{Rule 2}
+If the function $f(x)$ is of either form $P_m(x)e^{rx}\cos(kx)$ or $P_m(x)e^{rx}\sin(kx)$, take as the trial solution\\
+\[
+y_p(x) = x^s\left[(\sum_{i=0}^m{A_ix^i})e^{rx}\cos(kx)+(\sum_{i=0}^m{B_ix^i})e^{rx}\sin(kx)\right]
+\]
+where $s$ is the smallest nonnegative integer such that such that no term in $y_p$ duplicates a term in the complementary function $y_c$. Then determine the coefficients by substituting $y_p$ into the nonhomogeneous equation.
+
+\subsubsection{Variation of Parameters}
+Provided we know the general solution $y_c = c_1y_1 + c_2y_2 + \cdots + c_ny_n$ for a associated homogeneous equation, then we can use variation of parameters to find $y_p$.
+\[
+y_p(x) = u_1(x)y_1(x) + u_2(x)y_2(x) + \cdots + u_n(x)y_n(x)
+\]
+Find such $u$'s. It is possible for all order $n\geq 2$.
+
+\paragraph{For order of 2}
+ If the nonhomogeneous equation $y''+P(x)y'+Q(x)y = f(x)$ has complementary function $y_c(x) = c_1y_1(x) + c_2y_2(x)$, then a particular solution is given by
+
+\[
+y_p(x) = -y_1(x) \int{\frac{y_2(x)f(x)}{W(x)}dx} + y_2(x) \int{\frac{y_1(x)f(x)}{W(x)}dx}
+\]
+
+where $W = W(y1,y2)$ is the Wronskian of the two independent solutions $y_1$ and $y_2$ of the associated homogeneous equation.
+
+\[u'_1y_1 + u'_2y_2 = 0\]
+\[u'_1y'_1+u'_2y'_2=f(x)\]
+find $u_1$, $u_2$ and plug in to get the particular solution.
+
+\section{Series solutions of second order linear equations}
+
+\subsection{Review of Power Series}
+\begin{definition}
+A power series $\sum_{n=0}^{\infty} a_n(x-x_0)^n$ is said to \textbf{converge} at a point $x$ if
+\[
+\lim_{m\to \infty} \sum_{n=0}^{m} a_n(x-x_0)^n
+\]
+exists. The series converges for $x=x_0$; it may converge for all $x$ or some $x$.
+\end{definition}
+
+\begin{definition}
+A power series $\sum_{n=0}^{\infty} a_n(x-x_0)^n$ is said to \textbf{converge absolutely} at a point $x$ if
+\[
+\sum_{n=0}^{\infty} |a_n(x-x_0)^n|
+\]
+exists. If the series converges absolutely, then the series converge.
+\end{definition}
+
+\begin{theorem}
+The most useful test for the absolute convergence of a power series is the ratio test. If $a_n\neq 0$, and if for a fixed value of $x$
+\[
+\lim_{n\to \infty} |\frac{a_{n+1}(x-x_0)^{n+1}}{a_n(x-x_0)^n}| = |x-x_0| \lim_{n\to \infty} |\frac{a_{n+1}}{a_n}| = l
+\]
+then the power series converges absolutely at that value of $x$ if $l < 1$, and diverges if $l>1$. If $l=1$ the test is inconclusive.
+\end{theorem}
+
+\begin{theorem}
+If the power series  $\sum_{n=0}^{\infty} a_n(x-x_0)^n$ converges at $x = x_1$, it converges absolutely for $|x-x_0| < |x_1 - x_0|$; and if it diverges at $x=x_1$, it diverges for $|x-x_0| > |x_1-x_0$.
+\end{theorem}
+
+\begin{definition}
+There is a nonnegative number $\rho$, called the \textbf{radius of convergence}, such that  $\sum_{n=0}^{\infty} a_n(x-x_0)^n$ converges absolutely for $|x-x_0|<\rho$ and diverges for $|x-x_0|>\rho$. For a series that converges nowhere except at $x_0$, we define $\rho$ to be zero; for a series that converges for all $x$, we say that $\rho$ is infinite. If $\rho>0$, then the interval $|x-x_0<\rho|$ is called the \textbf{interval of convergence}. The series may either converge or diverge when $|x-x_0| = \rho$.
+\end{definition}
+
+If  $\sum_{n=0}^{\infty} a_n(x-x_0)^n$ and  $\sum_{n=0}^{\infty} b_n(x-x_0)^n$ converge to $f(x)$ and $g(x)$, respectively, for $|x-x_0|<\rho$, $\rho>0$, then the following are true for $|x-x_0|<\rho$.
+\[
+f(x) \pm g(x) = \sum_{n=0}^{\infty} (a_n\pm b_n)(x-x_0)^n
+\]
+\[
+f(x)g(x) = \sum_{n=0}^{\infty} (c_n)(x-x_0)^n
+\]
+where $c_n = \sum_{i=0}^n a_i b^{n-i}$
+\[
+\frac{f(x)}{g(x)} = \sum_{n=0}^{\infty} (d_n)(x-x_0)^n
+\]
+which can be done by using below.
+\[
+\sum_{n=0}^{\infty} (a_n)(x-x_0)^n = \sum_{n=0}^{\infty} (d_n)(x-x_0)^n\sum_{n=0}^{\infty} (b_n)(x-x_0)^n
+\]
+In case of division, the radius of convergence of the resulting power series may be less than $\rho$
+
+\begin{theorem}
+$f$ is continuous and has derivatives of all orders of $|x-x_0|<\rho$. Further, $f',f'',\ldots$ can be computed by differentiating the series term wise; that is,
+\[f'(x) = \sum_{n=1}^\infty n a_n (x-x_0)^{n-1}\]
+\[f''(x) = \sum_{n=2}^\infty n(n-1) a_n (x-x_0)^{n-2}\]
+and so forth, and each of the series converges absolutely for $|x-x_0|<\rho$.
+\end{theorem}
+
+\begin{definition}
+\[ a_n = \frac{f^{(n)}(x_0)}{n!} \]
+The series is called the Taylor series for $f$ about $x=x_0$.
+\end{definition}
+
+\begin{theorem}
+If $\sum_{n=0}^\infty a_n(x-x_0)^n = \sum_{n=0}^\infty b_n(x-x_0)^n$ for each $x$, then $a_n = b_n$. If $\sum_{n=0}^\infty a_n(x-x_0)^n = 0$ for each $x$, then $a_n = 0$.
+\end{theorem}
+
+\begin{definition}
+\[
+f(x) = \sum_{n=0}^\infty \frac{f^{(n)}(x_0)}{n!}(x-x_0)^n
+\]
+with a radius of convergence $\rho > 0$ is said to be analytic at $x=x_0$.
+\end{definition}
+
+\begin{definition}
+\[
+P(x)y''+Q(x)y'+R(x)y = 0
+\]
+Then $x_0$ is a \textbf{ordinary point} if $P(x)\neq 0$. It is a \textbf{regular singular point} if
+$(x - x_0) \frac{Q(x)}{P(x)}$ and $(x-x_0)^2 \frac{R(x)}{P(x)}$ are analytic at $x = x_0$. i.e. radius of convergence $>0$
+
+\subsection{Series solutions near an ordinary point}
+\begin{theorem}
+If $x_0$ is an ordinary point of the differential equation
+\[
+P(x)y''+Q(x)y'+R(x)y=0
+\]
+the general solution is
+\[
+y = \sum_{n=0}^\infty a_n(x-x_0)^n = a_0 y_1(x) + a_1 y_2(x)
+\]
+The radius of convergence of $y_1$ and $y_2$ is at least as large as the radii of convergence of $Q/P$ and $R/P$.
+\end{theorem}
+
+\subsection{Euler Equations}
+\begin{theorem}
+General solution of the Euler equation
+\[
+x^2 y'' + \alpha xy' + \beta y=0
+\]
+in any interval not containing the origin are determined by the roots $r_1$ and $r_2$ of the equation
+\[
+F(r)=r(r-1)+\alpha r + \beta = 0
+\]
+if the roots are real and different, we have
+\[
+y = c_1 |x|^{r_1} + c_2 |x|^{r_2}
+\]
+same
+\[
+y = (c_1+c_2 \ln|x|)|x|^{r}
+\]
+complex roots $a\pm bi$
+\[
+y = |x|^a (c_1 \cos(b \ln|x|) + c_2 \sin(b \ln |x|))
+\]
+\end{theorem}
+
+\subsection{Series solutions near a regular singular point}
+First reduce it to Euler equation.
+\[
+P(x)y''+Q(x)y'+R(x)y = 0
+\]
+let $p(x) = \frac{Q(x)}{P(x)}$ and $q(x) = \frac{R(x)}{P(x)}$, then we have
+\[
+x^2y''+x[xp(x)]y'+[x^2q(x)]y=0
+\]
+Let $p_0 = \lim_{x\to 0} \frac{xQ(x)}{P(x)}$ and $q_0 = \lim_{x\to 0} \frac{x^2R(x)}{P(x)}$.
+we now have
+\[
+x^2y''+p_0xy'+q_0y=0
+\]
+\begin{theorem}
+Find the Euler equation's roots.
+Let
+\[
+y = \sum_{n=0}^{\infty} a_n x^{n+r}
+\]
+Substitute into the original formula.\\
+Find the recurrence relation to determine the coefficient.\\
+
+
+\end{theorem}
+\begin{theorem}
+\[ x^2y''+x[xp(x)]y'+[x^2q(x)]y=0 \]
+where $x=0$ is a regular singular point. Then the functions $xp(x)$ and $x^2q(x)$ are analytic at $x=0$.
+\[
+xp(x) = \sum_{n=0}^\infty p_n x^n
+\]
+\[
+x^2 q(x) = \sum_{n=0}^\infty q_n x^n
+\]
+Let $r_1$ and $r_2$ be the roots of the \textbf{indicial equation}
+\[
+F(r) = r(r-1) + p_0 r + q_0 = 0
+\]
+the roots are called \textbf{exponents of the singularity}
+where $r_1 \geq r_2$. Then solution of the form
+\[
+y_1(x) = |x|^{r_1} \left( 1+\sum_{n=1}^\infty a_n(r_1)x^n \right)
+\]
+If $r_1 = r_2$, the second solution is
+\[
+y_2(x) = y_1(x) \ln|x| + |x|^{r_1} \sum_{n=1}^\infty b_n(r_1)x^n
+\]
+If $r_1-r_2 = N$
+\[
+y_2(x) = a y_1(x) \ln|x| + |x|^{r_2}  \left( 1+\sum_{n=1}^\infty c_n(r_2)x^n \right)
+\]
+
+The coefficients can be found with the recurrence relation\\
+\[
+F(r+n)a_n + \sum_{k=0}^{n-1} a_k[(r+k)p_{n-k} + q_{n-k}] = 0
+\]
+or substitute $y$ back.
+\end{theorem}
+\end{definition}
+\section{Definition of the Laplace Transform}
+\begin{definition}
+A \textbf{integral transform} is a relation of the form 
+\[
+F(s) = \int_\alpha^\beta K(s,t) f(t) dt
+\]
+$K$ is the \textbf{kernel} of the transformation.
+\end{definition}
+
+\begin{definition}
+The \textbf{Laplace transform} of $f$, denoted $\laplace{f(t)}$, is defined by the equation
+\[
+\laplace{f(t)} = F(s) = \int_0^\infty e^{-st} f(t) dt
+\]
+\end{definition}
+
+\begin{theorem}
+If $f$ is a piecewise continuous on the interval $0\leq t \leq A$ for any positive $A$, and $|f(t)| \leq Ke^{at}$ when $t\geq M$. $K,M\geq 0$. Then the $\laplace{f(t)}  = F(s)$ exists for $s > a$.
+\end{theorem}
+
+\begin{theorem}
+Laplace transform and it's inverse is a linear transform.
+\end{theorem}
+
+\subsection{Solution of Initial Value Problems}
+\begin{theorem}
+Suppose that $f$ is continuous and that $f'$ is piecewise continuous on any interval $0\leq t \leq A$. Suppose further that there exist constants $K, a$, and $M$ such that $|f(t)| \leq Ke^{at}$ for $t\geq M$. Then $\laplace{f'(t)}$ exists for $s>a$, and
+\[
+\laplace{f'(t)} = s \laplace{f(t)} - f(0)
+\]
+\end{theorem}
+
+\begin{corollary}
+Suppose that the function $f, f', \ldots, f^{(n-1)}$ are continuous, and that $f^{(n)}$ is piecewise continuous on any interval $0\leq t \leq A$.  Suppose further that there exist constants $K, a$, and $M$ such that $|f(t)| \leq Ke^{at},|f'(t)| \leq Ke^{at},\ldots,|f^{(n-1)}(t)| \leq Ke^{at}$ for $t\geq M$. Then $\laplace{f^{(n)}(t)}$ exists for $s>a$, and
+\[
+\laplace{f^{(n)}(t)} = s^n \laplace{f(t)} - s^{n-1} f(0) - \ldots -  s f^{(n-2)}(0) - f^{(n-1)}(0)
+\]
+\end{corollary}
+
+\subsection{Step Functions}
+\begin{definition}
+\textbf{unit step function} denoted by $u_c$ is defined by 
+\[
+u_c(t) = \left\{
+\fracnoline{0, \indent t<c}
+{1, \indent t\geq c} \right. \indent c\geq 0
+\]
+\end{definition}
+
+\begin{theorem}[Laplace transform of a unit step function]
+\[\laplace{u_c(t)} = \frac{e^{-cs}}{s},\indent s>0\]
+\end{theorem}
+
+\begin{theorem}
+If $F(s) = \laplace{f(t)}$ exists for $s>a\geq 0$, and if $c$ is a positive constant, then
+\[
+\laplace{u_c(t) f(t-c)} = e^{-cs}\laplace{f(t)} = e^{-cs}F(s), \indent s>a
+\]
+Conversely, if $f(t) = \ilaplace{F(s)}$, then
+\[
+u_c(t)f(t-c) =  \ilaplace{e^{-cs}F(s)}
+\]
+\end{theorem}
+
+\begin{theorem}
+If $F(s) = \laplace{f(t)}$ exists for $s>a\geq 0$, and if $c$ is a constant, then
+\[
+\laplace{e^{ct} f(t)} =F(s-c), \indent s>a
+\]
+Conversely, if $f(t) = \ilaplace{F(s)}$, then
+\[
+e^{ct} f(t) =  \ilaplace{F(s-c)}
+\]
+\end{theorem}
+
+\subsection{Differential Equations with Discontinuous Forcing Functions}
+Just some examples.
+
+\subsection{Impulse Functions}
+\begin{definition}
+\[  g(t) = ay'' + by'+cy \]
+g(t) is large during a short interval $t_0 - \tau < t < t_0 + \tau$ and is otherwise zero.
+$I(\tau)$, defined by
+\[
+I(\tau) = \int_{t_0-\tau}^{t_0+\tau} g(t) dt = \int_{-\infty}^\infty g(t) dt \]
+is the total \textbf{impulse} of the force $g(t)$ over the time interval $(t_0-\tau, t_0+\tau)$
+\end{definition}
+
+\begin{definition}
+A \textbf{unit impulse function} $\delta$ defined to have the property
+\[\delta(t) = 0,\indent t\neq 0\]
+\[\int_{-\infty}^{\infty} \delta(t) dt = 1\]
+\end{definition}
+
+\begin{definition}
+\[\laplace{\delta(t-t_0)} = \lim_{\tau\to 0} \laplace{d_\tau (t-t_0)} \]
+\end{definition}
+
+\begin{theorem}
+\[\laplace{d_\tau (t-t_0)} = \int_{t_0-\tau}^{t_0+\tau} e^{-st}d_\tau(t-t_0) dt \]
+\[ = \frac{1}{2\tau s} e^{-st_0} (e^{st} - e ^{-st}) \]
+\[=\frac{\sinh s\tau}{s\tau} e^{-st_0}\]
+\end{theorem}
+
+\begin{definition}
+\[\int_{-\infty}^{\infty} \delta(t-t_0) f(t) dt = \lim_{\tau\to 0} \int_{-\infty}^{\infty} d_\tau(t-t_0) f(t) dt\]
+\end{definition}
+
+\begin{theorem}
+\[ \int_{-\infty}^{\infty} d_\tau(t-t_0) f(t) dt = \frac{1}{2\tau}\int_{t_0-\tau}^{t_0+\tau} f(t) dt = f(t^*)\]
+Where $t_0-\tau<t^*<t_0+\tau$
+\end{theorem}
+
+\subsection{The Convolution Integral}
+\begin{theorem}
+If $F(s) = \laplace{f(t)}$ and $G(s) = \laplace{g(t)}$ both exist for $s>a\geq 0$, then
+\[H(s) = F(s)G(s) = \laplace{h(t)}, \indent s>a \]
+where
+\[ h(t) = \int_0^t f(t-\tau)g(\tau) d\tau = \int_0^t f(\tau)g(t-\tau) d\tau \] 
+The function $h$ is known as the \textbf{convolution} of $f$ and $g$; the integrals are known as \textbf{convolution integrals}.
+\end{theorem}
+
+\begin{theorem}
+\[(f * g)(t) = \int_0^t f(t-\tau)g(\tau) d\tau\]
+Then
+\[f*g = g*f\]
+\[f*(g_1+g_2) = f*g_1 + f*g_2\]
+\[(f*g)*h = f*(g*h)\]
+\[f*0 = 0*f = 0\]
+\end{theorem}
+
+\section{Partial differential equations}
+\subsection{Two-point boundary value problems}
+\begin{definition}
+For the following DE
+\[ y'' + \lambda y = 0 \]
+$\lambda$ is the \textbf{eigenvalue}, nontrivial solutions are \textbf{eigenfunctions}. 
+\end{definition}
+
+\begin{theorem}
+For boundary values $y(0) = 0$, $y(L)=0$
+\[ y'' + \lambda y = 0 \]
+If $\lambda > 0$
+we have 
+\[ y'' + u^2 y = 0 \]
+\[y = c_1 \cos ux + c_2 \sin ux\]
+
+If $\lambda < 0$
+\[ y'' - u^2 y = 0 \]
+\[y = c_1 \cosh ux + c_2 \sinh ux\]
+
+If $\lambda = 0$
+\[ y''= 0 \]
+\[ y = c_1 x + c_2 \]
+
+The eigenvalues and the eigenfunctions are
+\[
+\lambda_n = n^2 \pi^2 /L^2
+\]
+
+\[
+y_n(x) = \sin(n\pi x /L)
+\]
+\end{theorem}
+\subsection{The Fourier convergence theorem}
+\begin{theorem}
+$f$ and $f'$ are piecewise continuous on $-L\leq x < L$
+\[
+f(x) = \frac{a_0}{2} + \sum_{m=1}^\infty (a_m \cos \frac{m\pi x}{L} + b_m \sin \frac{m\pi x}{L})
+\]
+coefficients are
+\[
+a_m = \frac{1}{L} \int_{-L}^L f(x) \cos \frac{m\pi x}{L} dx
+\]
+\[
+b_m = \frac{1}{L} \int_{-L}^L f(x) \sin \frac{m\pi x}{L} dx
+\]
+Converge to (f(x+)+f(x-))/2 at points where $f$ is discontinuous.
+\end{theorem}
+
+\subsection{Even and odd functions}
+\begin{theorem}
+\begin{enumerate}
+\item Sum and product of even functions are even
+\item sum of two odd functions are odd, product are even
+\item sum of odd and even is neither even nor odd, the product is odd
+\item $f$ is even, then 
+\[
+\int_{-L}^L f(x) dx = 2 \int_0^L f(x) dx
+\]
+\item $f$ is odd, then 
+\[
+\int_{-L}^L f(x) dx = 0
+\]
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+For even functions,
+\[f(x) = \frac{a_0}{2} + \sum_{n=1}^\infty a_n \cos \frac{n\pi x}{L}\]
+\[a_n = \frac{2}{L} \int_{0}^L f(x) \cos \frac{n\pi x}{L} dx \]
+For odd functions, we have
+
+\[f(x) =+ \sum_{n=1}^\infty b_n \sin \frac{n\pi x}{L}\]
+\[b_n = \frac{2}{L} \int_{0}^L  f(x) \sin \frac{n\pi x}{L} dx \]
+\end{theorem}
+
+\subsection{Heat equation}
+\begin{definition}
+The following is the \textbf{heat conduct equation}
+\[
+\alpha^2 u_{xx} = u_{t}
+\]
+\end{definition}
+
+\begin{theorem}
+The steady temperature solution, given  $u(0,t) = T_1$, $u(L,t) = T_2$, is
+\[
+v(x) = (T_2 - T_1)\frac{x}{L} + T_1
+\]
+\end{theorem}
+\begin{theorem}
+Given  $u(0,t) = T_1$, $u(L,t) = T_2$, $u(x,0) = f(x)$
+we have
+\[
+u(x,t) = (T_2-T_1)\frac{x}{L} + T_1 + \sum_{n=1}^\infty c_n e^{-n^2\pi^2\alpha^2 t/L^2} \sin \frac{n\pi x}{L}
+\]
+where
+\[
+c_n = \frac{2}{L} \int_0^L [f(x) - (T_2-T_1)\frac{x}{L} - T_1] \sin \frac{n\pi x}{L}
+\]
+\end{theorem}
+
+\subsection{Wave equation}
+\begin{definition}
+This is the \textbf{wave equation}
+\[
+a^2 u_{xx} = u_{tt}
+\]
+\end{definition}
+
+\begin{theorem}[Elastic string with nonzero initial displacement]
+Boundary condition: $u(0,t) = u(L,t) = 0$, initial conditions $u(x,0) = f(x)$, $u_t(x,0) = 0$.
+Then
+\[
+u(x,t) = \sum_{n=1}^\infty c_n u_n (x,t) = \sum_{n=1}^\infty c_n \sin \frac{n\pi x}{L} \cos \frac{n\pi at}{L}
+\]
+where
+\[
+c_n = \frac{2}{L}\int_0^L f(x) \sin \frac{n\pi x}{L} dx
+\]
+\end{theorem}
+
+\begin{theorem}[General problem for the elastic string]
+Boundary condition: $u(0,t) = u(L,t) = 0$, initial conditions $u(x,0) = 0$, $u_t(x,0) = g(x)$.
+then
+\[
+u(x,t) = \sum_{n=1}^\infty k_n u_n (x,t) = \sum_{n=1}^\infty k_n \sin \frac{n\pi x}{L} \sin \frac{n\pi at}{L}
+\]
+where
+\[
+k_n = \frac{2}{n\pi a}\int_0^L g(x) \sin \frac{n\pi x}{L} dx
+\]
+\end{theorem}
+\end{document}
+

@@ -1,0 +1,120 @@
+\documentclass[letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{latexsym}
+\usepackage{mathrsfs}
+\usepackage{eufrak}
+\usepackage[pdftex]{graphicx}
+\usepackage{color}
+
+\setlength{\topmargin}{-0.5in} \setlength{\textwidth}{6.5in}
+\setlength{\oddsidemargin}{0.0in} \setlength{\textheight}{9.1in}
+
+\newlength{\pagewidth}
+\setlength{\pagewidth}{6.5in} \pagestyle{empty}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\B}{\mathfrak{B}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\rref}{\operatorname{rref}}
+\newcommand{\rank}{\operatorname{rank}}
+%\newcommand{\ker}{\operatorname{ker}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Example]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Remark]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\title{Elementary Differential Equations(Boyce) Chapter 5(Series solutions of Second Order Linear Equations) Notes}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-.5in}
+
+\section{Review of Power Series}
+\begin{definition}
+A power series $\sum_{n=0}^{\infty} a_n(x-x_0)^n$ is said to \textbf{converge} at a point $x$ if
+\[
+\lim_{m\to \infty} \sum_{n=0}^{m} a_n(x-x_0)^n
+\]
+exists. The series converges for $x=x_0$; it may converge for all $x$ or some $x$.
+\end{definition}
+
+\begin{definition}
+A power series $\sum_{n=0}^{\infty} a_n(x-x_0)^n$ is said to \textbf{converge absolutely} at a point $x$ if
+\[
+\sum_{n=0}^{\infty} |a_n(x-x_0)^n|
+\]
+exists. If the series converges absolutely, then the series converge.
+\end{definition}
+
+\begin{theorem}
+The most useful test for the absolute convergence of a power series is the ratio test. If $a_n\neq 0$, and if for a fixed value of $x$
+\[
+\lim_{n\to \infty} |\frac{a_{n+1}(x-x_0)^{n+1}}{a_n(x-x_0)^n}| = |x-x_0| \lim_{n\to \infty} |\frac{a_{n+1}}{a_n} = l|
+\]
+then the power series converges absolutely at that value of $x$ if $l < 1$, and diverges if $l>1$. If $l=1$ the test is inconclusive.
+\end{theorem}
+
+\begin{theorem}
+If the power series  $\sum_{n=0}^{\infty} a_n(x-x_0)^n$ converges at $x = x_1$, it converges absolutely for $|x-x_0| < |x_1 - x_0|$; and if it diverges at $x=x_1$, it diverges for $|x-x_0| > |x_1-x_0$.
+\end{theorem}
+
+\begin{definition}
+There is a nonnegative number $\rho$, called the \textbf{radius of convergence}, such that  $\sum_{n=0}^{\infty} a_n(x-x_0)^n$ converges absolutely for $|x-x_0|<\rho$ and diverges for $|x-x_0|>\rho$. For a series that converges nowhere except at $x_0$, we define $\rho$ to be zero; for a series that converges for all $x$, we say that $\rho$ is infinite. If $\rho>0$, then the interval $|x-x_0<\rho|$ is called the \textbf{interval of convergence}. The series may either converge or diverge when $|x-x_0| = \rho$.
+\end{definition}
+
+If  $\sum_{n=0}^{\infty} a_n(x-x_0)^n$ and  $\sum_{n=0}^{\infty} b_n(x-x_0)^n$ converge to $f(x)$ and $g(x)$, respectively, for $|x-x_0|<\rho$, $\rho>0$, then the following are true for $|x-x_0|<\rho$.
+\[
+f(x) \pm g(x) = \sum_{n=0}^{\infty} (a_n\pm b_n)(x-x_0)^n
+\]
+\[
+f(x)g(x) = \sum_{n=0}^{\infty} (c_n)(x-x_0)^n
+\]
+where $c_n = \sum_{i=0}^n a_i b^{n-i}$
+\[
+\frac{f(x)}{g(x)} = \sum_{n=0}^{\infty} (d_n)(x-x_0)^n
+\]
+which can be done by using below.
+\[
+\sum_{n=0}^{\infty} (a_n)(x-x_0)^n = \sum_{n=0}^{\infty} (d_n)(x-x_0)^n\sum_{n=0}^{\infty} (b_n)(x-x_0)^n
+\]
+In case of division, the radius of convergence of the resulting power series may be less than $\rho$
+
+\begin{theorem}
+$f$ is continuous and has derivatives of all orders of $|x-x_0|<\rho$. Further, $f',f'',\ldots$ can be computed by differentiating the series term wise; that is,
+\[f'(x) = \sum_{n=1}^\infty n a_n (x-x_0)^{n-1}\]
+\[f''(x) = \sum_{n=2}^\infty n(n-1) a_n (x-x_0)^{n-2}\]
+and so forth, and each of the series converges absolutely for $|x-x_0|<\rho$.
+\end{theorem}
+
+\begin{definition}
+\[ a_n = \frac{f^{(n)}(x_0)}{n!} \]
+The series is called the Taylor series for $f$ about $x=x_0$.
+\end{definition}
+
+\begin{theorem}
+If $\sum_{n=0}^\infty a_n(x-x_0)^n = \sum_{n=0}^\infty b_n(x-x_0)^n$ for each $x$, then $a_n = b_n$. If $\sum_{n=0}^\infty a_n(x-x_0)^n = 0$ for each $x$, then $a_n = 0$.
+\end{theorem}
+
+\begin{definition}
+\[
+f(x) = \sum_{n=0}^\infty \frac{f^{(n)}(x_0)}{n!}(x-x_0)^n
+\]
+with a radius of convergence $\rho > 0$ is said to be analytic at $x=x_0$.
+\end{definition}
+
+
+\end{document}
+\theend

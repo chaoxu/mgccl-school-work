@@ -1,0 +1,141 @@
+\documentclass[letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{latexsym}
+\usepackage{mathrsfs}
+\usepackage{eufrak}
+\usepackage[pdftex]{graphicx}
+\usepackage{color}
+
+\setlength{\topmargin}{-0.5in} \setlength{\textwidth}{6.5in}
+\setlength{\oddsidemargin}{0.0in} \setlength{\textheight}{9.1in}
+
+\newlength{\pagewidth}
+\setlength{\pagewidth}{6.5in} \pagestyle{empty}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\B}{\mathfrak{B}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\image}{\operatorname{image}}
+\newcommand{\rref}{\operatorname{rref}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\nullity}{\operatorname{nullity}}
+\newcommand{\proj}{\operatorname{proj}}
+
+%\newcommand{\ker}{\operatorname{ker}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Example]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Remark]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\title{Linear Algebra(Bretscher) Chapter 2 Notes}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-.5in}
+\section{List of linear transformations}
+\subsection{Scalings}
+$\begin{bmatrix}
+k&0\\
+0&k
+\end{bmatrix}$ is a scaling of a factor of $k$.
+
+\subsection{Orthogonal Projections}
+Any vector $\vec x$ in $\R^2$ can be uniquely written as
+\[
+\vec x = \vec x^\parallel + \vec x^\perp
+\]
+where $\vec x^\parallel$ and $\vec x^\perp$ are parallel and perpendicular to $L$, respectively.\\
+The transformation $T(\vec x) =  \vec x^\parallel$ is the orthogonal projection of $\vec x$ onto $L$.
+$\vec w$ is a nonzero vector parallel to $L$.$\vec u$ is a unit vector parallel to $L$.
+\[\proj_L(\vec x) = \vec x^\parallel =  \frac{\vec x \cdot \vec w}{\vec w \cdot \vec w} \vec w = (\vec x \cdot \vec u) \vec u\]
+The matrix for $\proj_L(\vec x)$ is
+
+\[\frac{1}{w_1^2+w_2^2}
+\begin{bmatrix}
+w_1^2&w_1w_2\\
+w_1w_2&w_2^2
+\end{bmatrix} = \begin{bmatrix}
+u_1^2&u_1u_2\\
+u_1u_2&u_2^2
+\end{bmatrix}
+\]
+
+Let $L^\perp$ be the line perpendicular to $L$, then \[\proj_{L^\perp}(\vec x) = \vec x^\perp \]
+\subsection{Reflections}
+
+
+\[\operatorname{ref}_L(\vec x) \]
+\[=  \vec x^\parallel - \vec x^\perp\]
+\[= \vec x - 2\vec x^\perp\]
+\[= 2 \vec x^\parallel - \vec x\]
+\[= 2 \proj_L(\vec x) - \vec x\]
+\[= 2(\vec x \cdot \vec u)\vec u - \vec x\]
+
+The matrix is in the form 
+$ \begin{bmatrix}
+a&b\\
+b&-a
+\end{bmatrix}$, where $a^2+b^2 = 1$
+
+\subsection{Rotations}
+The matrix of a counterclockwise rotation in $\R^2$ though an angle $\theta$ is
+\[
+\begin{bmatrix}
+\cos \theta&-\sin \theta\\
+\sin \theta&\cos \theta
+\end{bmatrix} 
+= 
+\begin{bmatrix}
+a&-b\\
+b&a
+\end{bmatrix} 
+\]
+where $a^2+b^2 = 1$.
+
+\subsection{Rotations combined with scaling}
+$\begin{bmatrix}
+a&-b\\
+b&a
+\end{bmatrix}$ is a rotation of $\theta$ and scale of $r$, where $a = r\cos\theta$, $b=r\sin\theta$.
+
+\subsection{Shears}
+A horizontal shear is the form $\begin{bmatrix}
+1&k\\
+0&1
+\end{bmatrix}$, a vertical shear is the form $\begin{bmatrix}
+1&0\\
+k&1
+\end{bmatrix}$
+
+\section{The inverse of a linear transformation}
+Inverse of a $2\times 2$ matrix 
+\[
+\begin{bmatrix}
+a&b\\
+c&d
+\end{bmatrix}^{-1} = \frac{1}{ad-bc}
+\begin{bmatrix}
+d&-b\\
+-c&a
+\end{bmatrix}
+\]
+
+\[(BA)^{-1} =
+A^{-1}B^{-1}
+\]
+
+\end{document}
+\theend

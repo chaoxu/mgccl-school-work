@@ -1,0 +1,178 @@
+\documentclass[letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{latexsym}
+\usepackage{mathrsfs}
+\usepackage{eufrak}
+\usepackage[pdftex]{graphicx}
+\usepackage{color}
+\usepackage{mathrsfs}
+\setlength{\topmargin}{-0.5in} \setlength{\textwidth}{6.5in}
+\setlength{\oddsidemargin}{0.0in} \setlength{\textheight}{9.1in}
+
+\newlength{\pagewidth}
+\setlength{\pagewidth}{6.5in} \pagestyle{empty}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\B}{\mathfrak{B}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\laplace}[1]{\mathscr{L}\{#1\}}
+\newcommand{\ilaplace}[1]{\mathscr{L}^{-1}\{#1\}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\fracnoline}[2]{\genfrac{}{}{0pt}{}{#1}{#2}}
+\newcommand{\rref}{\operatorname{rref}}
+\newcommand{\rank}{\operatorname{rank}}
+%\newcommand{\ker}{\operatorname{ker}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Example]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Remark]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\title{Elementary Differential Equations(Boyce) Chapter 6(The Laplace Transform) Notes}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-.5in}
+\section{Definition of the Laplace Transform}
+\begin{definition}
+A \textbf{integral transform} is a relation of the form 
+\[
+F(s) = \int_\alpha^\beta K(s,t) f(t) dt
+\]
+$K$ is the \textbf{kernel} of the transformation.
+\end{definition}
+
+\begin{definition}
+The \textbf{Laplace transform} of $f$, denoted $\laplace{f(t)}$, is defined by the equation
+\[
+\laplace{f(t)} = F(s) = \int_0^\infty e^{-st} f(t) dt
+\]
+\end{definition}
+
+\begin{theorem}
+If $f$ is a piecewise continuous on the interval $0\leq t \leq A$ for any positive $A$, and $|f(t)| \leq Ke^{at}$ when $t\geq M$. $K,M\geq 0$. Then the $\laplace{f(t)}  = F(s)$ exists for $s > a$.
+\end{theorem}
+
+\begin{theorem}
+Laplace transform and it's inverse is a linear transform.
+\end{theorem}
+
+\section{Solution of Initial Value Problems}
+\begin{theorem}
+Suppose that $f$ is continuous and that $f'$ is piecewise continuous on any interval $0\leq t \leq A$. Suppose further that there exist constants $K, a$, and $M$ such that $|f(t)| \leq Ke^{at}$ for $t\geq M$. Then $\laplace{f'(t)}$ exists for $s>a$, and
+\[
+\laplace{f'(t)} = s \laplace{f(t)} - f(0)
+\]
+\end{theorem}
+
+\begin{corollary}
+Suppose that the function $f, f', \ldots, f^{(n-1)}$ are continuous, and that $f^{(n)}$ is piecewise continuous on any interval $0\leq t \leq A$.  Suppose further that there exist constants $K, a$, and $M$ such that $|f(t)| \leq Ke^{at},|f'(t)| \leq Ke^{at},\ldots,|f^{(n-1)}(t)| \leq Ke^{at}$ for $t\geq M$. Then $\laplace{f^{(n)}(t)}$ exists for $s>a$, and
+\[
+\laplace{f^{(n)}(t)} = s^n \laplace{f(t)} - s^{n-1} f(0) - \ldots -  s f^{(n-2)}(0) - f^{(n-1)}(0)
+\]
+\end{corollary}
+
+\section{Step Functions}
+\begin{definition}
+\textbf{unit step function} denoted by $u_c$ is defined by 
+\[
+u_c(t) = \left\{
+\fracnoline{0, \indent t<c}
+{1, \indent t\geq c} \right. \indent c\geq 0
+\]
+\end{definition}
+
+\begin{theorem}[Laplace transform of a unit step function]
+\[\laplace{u_c(t)} = \frac{e^{-cs}}{s},\indent s>0\]
+\end{theorem}
+
+\begin{theorem}
+If $F(s) = \laplace{f(t)}$ exists for $s>a\geq 0$, and if $c$ is a positive constant, then
+\[
+\laplace{u_c(t) f(t-c)} = e^{-cs}\laplace{f(t)} = e^{-cs}F(s), \indent s>a
+\]
+Conversely, if $f(t) = \ilaplace{F(s)}$, then
+\[
+u_c(t)f(t-c) =  \ilaplace{e^{-cs}F(s)}
+\]
+\end{theorem}
+
+\begin{theorem}
+If $F(s) = \laplace{f(t)}$ exists for $s>a\geq 0$, and if $c$ is a constant, then
+\[
+\laplace{e^{ct} f(t)} =F(s-c), \indent s>a
+\]
+Conversely, if $f(t) = \ilaplace{F(s)}$, then
+\[
+e^{ct} f(t) =  \ilaplace{F(s-c)}
+\]
+\end{theorem}
+
+\section{Differential Equations with Discontinuous Forcing Functions}
+Just some examples.
+
+\section{Impulse Functions}
+\begin{definition}
+\[  g(t) = ay'' + by'+cy \]
+g(t) is large during a short interval $t_0 - \tau < t < t_0 + \tau$ and is otherwise zero.
+$I(\tau)$, defined by
+\[
+I(\tau) = \int_{t_0-\tau}^{t_0+\tau} g(t) dt = \int_{-\infty}^\infty g(t) dt \]
+is the total \textbf{impulse} of the force $g(t)$ over the time interval $(t_0-\tau, t_0+\tau)$
+\end{definition}
+
+\begin{definition}
+A \textbf{unit impulse function} $\delta$ defined to have the property
+\[\delta(t) = 0,\indent t\neq 0\]
+\[\int_{-\infty}^{\infty} \delta(t) dt = 1\]
+\end{definition}
+
+\begin{definition}
+\[\laplace{\delta(t-t_0)} = \lim_{\tau\to 0} \laplace{d_\tau (t-t_0)} \]
+\end{definition}
+
+\begin{theorem}
+\[\laplace{d_\tau (t-t_0)} = \int_{t_0-\tau}^{t_0+\tau} e^{-st}d_\tau(t-t_0) dt \]
+\[ = \frac{1}{2\tau s} e^{-st_0} (e^{st} - e ^{-st}) \]
+\[=\frac{\sinh s\tau}{s\tau} e^{-st_0}\]
+\end{theorem}
+
+\begin{definition}
+\[\int_{-\infty}^{\infty} \delta(t-t_0) f(t) dt = \lim_{\tau\to 0} \int_{-\infty}^{\infty} d_\tau(t-t_0) f(t) dt\]
+\end{definition}
+
+\begin{theorem}
+\[ \int_{-\infty}^{\infty} d_\tau(t-t_0) f(t) dt = \frac{1}{2\tau}\int_{t_0-\tau}^{t_0+\tau} f(t) dt = f(t^*)\]
+Where $t_0-\tau<t^*<t_0+\tau$
+\end{theorem}
+
+\section{The Convolution Integral}
+\begin{theorem}
+If $F(s) = \laplace{f(t)}$ and $G(s) = \laplace{g(t)}$ both exist for $s>a\geq 0$, then
+\[H(s) = F(s)G(s) = \laplace{h(t)}, \indent s>a \]
+where
+\[ h(t) = \int_0^t f(t-\tau)g(\tau) d\tau = \int_0^t f(\tau)g(t-\tau) d\tau \] 
+The function $h$ is known as the \textbf{convolution} of $f$ and $g$; the integrals are known as \textbf{convolution integrals}.
+\end{theorem}
+
+\begin{theorem}
+\[(f * g)(t) = \int_0^t f(t-\tau)g(\tau) d\tau\]
+Then
+\[f*g = g*f\]
+\[f*(g_1+g_2) = f*g_1 + f*g_2\]
+\[(f*g)*h = f*(g*h)\]
+\[f*0 = 0*f = 0\]
+\end{theorem}
+\end{document}
+\theend

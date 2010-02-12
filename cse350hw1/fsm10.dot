@@ -1,0 +1,26 @@
+digraph automata {
+    node [shape=circle,width=0.5];
+    edge [labeldistance=0.5,lblstyle="inner sep=1pt", style=">=stealth',shorten >=1pt"];
+    q_a -> q_b [label="0"];
+    q_a -> q_n [label="1"];
+    q_b -> q_d [label="0"];
+    q_b -> q_ac [label="1"];
+    q_d -> q_a [label="1"];
+    q_d -> q_n [label="0"];
+    q_ac -> q_n [label="1"];
+    q_ac -> q_ab [label="0"];
+    q_ab -> q_ac [label="1"];
+    q_ab -> q_bd [label="0"];
+    q_bd -> q_d [label="0"];
+    q_bd -> q_ac [label="1"];
+    q_n [label="\emptyset"];
+    q_ac [label="\{q_a,q_c\}"];
+    q_ab [label="\{q_a,q_b\}"];
+    q_bd [label="\{q_b,q_d\}"];
+    start [shape=plaintext,label=" "];
+    start->q_a;
+    q_a [shape=doublecircle,width=0.6];
+    q_ac [shape=doublecircle,width=0.6];
+    q_ab [shape=doublecircle,width=0.6];
+}
+

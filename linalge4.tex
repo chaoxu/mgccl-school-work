@@ -1,0 +1,210 @@
+\documentclass[letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{latexsym}
+\usepackage{mathrsfs}
+\usepackage{eufrak}
+\usepackage[pdftex]{graphicx}
+\usepackage{color}
+
+\setlength{\topmargin}{-0.5in} \setlength{\textwidth}{6.5in}
+\setlength{\oddsidemargin}{0.0in} \setlength{\textheight}{9.1in}
+
+\newlength{\pagewidth}
+\setlength{\pagewidth}{6.5in} \pagestyle{empty}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\B}{\mathfrak{B}}
+\newcommand{\U}{\mathfrak{U}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\image}{\operatorname{image}}
+\newcommand{\rref}{\operatorname{rref}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\nullity}{\operatorname{nullity}}
+%\newcommand{\ker}{\operatorname{ker}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Example]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Remark]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\title{Linear Algebra(Bretscher) Chapter 4 Notes}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-.5in}
+
+\section{Introduction to Linear Spaces}
+\begin{definition}
+A \textbf{linear space} $V$ is a set with the following rules for all $f,g,h \in V$ and $c,k\in \R$.
+\begin{enumerate}
+\item $(f+g)+h=f+(g+h)$
+\item $f+g = g+f$
+\item There exist a unique 0, such that $f+0 = f$
+\item There exist a unique $g\in V$ such that $f+g = 0$, $g$ is also $-f$.
+\item $k(f+g) = kf + kg$
+\item $(c+k)f = cf + kf$
+\item $c(kf) = (ck)f$
+\item $1f = f$
+\end{enumerate}
+\end{definition}
+\begin{definition}
+A subset $W$ of a linear space $V$ is called a \textbf{subspace} of $V$ if
+\begin{enumerate}
+\item $W$ contains 0 of $V$.
+\item $W$ is closed under addition.
+\item $W$ is closed under scalar multiplication.
+\end{enumerate}
+\end{definition}
+
+Elements $f_1,\ldots,f_n$ in $V$\\
+\begin{definition}
+$f_1,\ldots,f_n$ \textbf{span} $V$ if every $f$ in $V$ can be expressed as a linear combination of $f_1,\ldots,f_n$.
+\end{definition}
+
+\begin{definition}
+$f_i$ is \textbf{redundant} if it's a linear combination of $f_1,\ldots,f_{i-1}$. If non of them are redundant, $f_1,\ldots,f_n$ is called \textbf{linearly independent}.
+\end{definition}
+
+\begin{definition}
+$f_1,\ldots,f_n$ is a \textbf{basis} of $V$ if they span $V$ and are linearly independent. For any $f = c_1f_1+\ldots+c_nf_n$. The coefficient $c_1,\ldots c_n$ are called the \textbf{coordinates} of $f$ with respect to the basis $\B = (f_1,\ldots,f_n)$. The vector 
+\[\begin{pmatrix}
+c_1\\
+\vdots\\
+c_{n}
+\end{pmatrix}\]
+is the \textbf{$\B$-coordinate vector} of $f$, denoted by $[f]_{\B}$.\\
+The transformation
+\[
+L(f) = [f]_{\B} = \begin{pmatrix}
+c_1\\
+\vdots\\
+c_{n}
+\end{pmatrix}\
+\]
+from $V$ to $\R^n$ is called the \textbf{$\B$-coordinate transformation}, denoted by $L_\B$.
+\end{definition}
+
+\begin{theorem}[Linearity of the coordinate transformation $L_\B$]
+If $\B$ is a basis of a linear space $V$, then
+\begin{enumerate}
+\item $[f+g]_\B = [f]_\B + [g]_\B$
+\item $[kf]_\B = k [f]_\B$
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+If a linear space $V$ has a basis of $n$ elements, all other bases of $V$ consist of $n$ elements. and $n$ is the \textbf{dimension} of $V$:
+\[\dim(V) = n\]
+\end{theorem}
+
+\begin{theorem}[Find a basis of a linear space $V$]
+It can be done with following steps
+\begin{enumerate}
+\item Write down a element of $V$ in terms of arbitrary constants.
+\item Express it as coefficients of linear combination of some elements of $V$, where coefficients are the arbitrary constants.
+\item Verify that the elements of $V$ in the linear combination are linearly independent. If yes, they form a basis of $V$.
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+The solution of $n$th-order linear differential equation with constant coefficients form a $n$-dimensional subspace of $\mathbb{C}^n$.
+\end{theorem}
+\begin{definition}
+A linear space $V$ is called \textbf{finite dimensional} if $\dim(V) = n$ for some integer $n$. Else it's \textbf{infinite dimensional}.
+\end{definition}
+
+\section{Linear Transformations and Isomorphisms}
+\begin{definition}
+$T:V\to W$ is a \textbf{linear transformation} if
+\[T(f+g) = T(f)+T(g)\]
+\[T(kf) = kT(f)\]
+$f,g\in V, k\in \R$. Let
+\[\im(T) = \{T(f):f\in V\}\]
+\[\ker(T) = \{f\in V: T(f) = 0\}\]
+$\dim(\im(T))$ is called the \textbf{rank} of T.\\
+$\dim(\ker(T))$ is called the \textbf{nullity} of T.\\
+and
+$\dim(V) = \rank(T) + \nullity(T)$
+\end{definition}
+
+\begin{definition}
+An invertible linear transformation $T$ is called an \textbf{isomorphism}. $V$ is isomorphic to $W$ if there exist an isomorphism $T:V\to W$.
+\end{definition}
+
+\begin{theorem}[Coordinate transformations are isomorphisms]
+If $\B = (f_1,\ldots,f_n)$ is a basis of $V$, then coordinate transformation $L_\B(f) = [f]_\B$ from $V$ to $\R^n$ is an isomorphism. $V$ is isomorphic to $\R^n$. Or, any $n$-dimensional linear space $V$ is isomorphic to $\R^n$.
+\end{theorem}
+
+\begin{theorem}[Properties of isomorphisms]
+\begin{enumerate}
+\item $T:V\to W$ is an isomorphism iif $\ker(T) = \{0\}$ and $\im(T) = W$.
+\item If $V$ is isomorphic to $W$, then $\dim(V) = \dim(W)$.
+\item Let $T:V\to W$ be an linear transformation and $\ker(T) = \{0\}$. If $\dim(V) = \dim(W)$, then $T$ is a isomorphism.
+\item Let $T:V\to W$ be an linear transformation and $\im(T) = W$. If $\dim(V) = \dim(W)$, then $T$ is a isomorphism.
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+A procedure checks if $V$ and $W$ are isomorphic.
+\begin{enumerate}
+\item Is $\dim(V) = \dim(W)$? no return false.
+\item If you can write a formula for the inverse of $T$, return true. else go to 3.
+\item Is $\ker(T) = \{0\}$, yes return true, no return false, else go to 4.
+\item Is $\im(T) = W$, yes return true, no return false.
+\end{enumerate}
+\end{theorem}
+
+
+\section{The Matrix of a Linear Transformation}
+\begin{definition}
+Consider a linear transformation $T$ from $V$ to $V$, where $V$ is an $n$-dimensional linear space. Let $\B$ be a basis of $V$. Consider the linear transformation $L_\B \circ T \circ L_\B^{-1}$ from $\R^n$ to $\R^n$, with standard matrix $B$, meaning that $B\vec x = L_\B(T(L_\B^{-1}(\vec x)))$ for all $\vec x$ in $\R^n$. This matrix $B$ is called the \textbf{$\B$-matrix of transformation $T$}.
+\end{definition}
+
+\begin{theorem}
+Consider a linear transformation $T$ from $V$ to $V$, and let $B$ be the matrix of $T$ with respect to a basis $\B = (f_1,\ldots,f_n)$ of $V$. Then
+\[
+B = \begin{bmatrix}
+[T(f_1)]_\B & \cdots & [T(f_n)]_\B
+\end{bmatrix}
+\]
+The columns of $B$ are the $\B$-coordinate vectors of the transforms of the basis elements $f_1,\ldots,f_n$ of $V$.
+\end{theorem}
+
+\subsection{Change of Basis}
+\begin{definition}
+Consider two bases $\U$ and $\B$ of an $n$-dimensional linear space $V$. Consider the linear transformation $L_\U \circ L_\B^-1$ from $\R^n$ to $\R^n$ , with standard matrix $S$, meaning that $S\vec x = L_\U(L_\B^-1(\vec x))$ for all $\vec x$ in $R^n$. This invertible matrix $S$ is called the \textbf{change of basis matrix} from $\B$ to $\U$, sometimes denoted by $S_{\B\to \U}$
+\end{definition}
+
+\begin{theorem}[Change of basis in a subspace of $\R^n$]
+Consider a subspace $V$ of $\R^n$ with two bases $\U = (\vec a_1, \ldots, \vec a_m)$ and $\B = (\vec b_1, \ldots, \vec b_m)$. Let $S$ be the change of basis matrix from $\B$ to $\U$. Then the following equation holds:
+\[
+\begin{bmatrix}
+\vec b_1& \cdots & \vec b_m
+\end{bmatrix}
+= 
+\begin{bmatrix}
+\vec a_1& \cdots & \vec a_m
+\end{bmatrix}S
+\]
+\end{theorem}
+
+\begin{theorem}[Change of basis for the matrix of a linear transformation]
+Let $V$ be a linear space with two given base $\U$ and $\B$. Consider a linear transformation $T$ from $V$ to $V$, and let $A$ and $B$ be the $\U$- and the $\B$-matrix of $T$, respectively. Let $S$ be the change of basis matrix from $\B$ to $\U$. Then $A$ is similar to $B$, and
+\[AS = SB \text{ or } A = SBS^{-1} \text{ or } B = S^{-1}AS\]
+\end{theorem}
+\end{document}
+
+
+\theend

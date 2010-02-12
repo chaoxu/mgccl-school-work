@@ -1,0 +1,10 @@
+digraph automata {
+    rankdir=LR;
+    node [shape=circle];
+    edge [style=">=stealth',shorten >=1pt"];
+    q_a -> q_a [label="0"];
+    start [shape=plaintext,label=" "];
+    start->q_a;
+    q_a [shape=doublecircle];
+}
+

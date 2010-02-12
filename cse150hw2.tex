@@ -1,0 +1,182 @@
+\documentclass[letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{latexsym}
+\usepackage[pdftex]{graphicx}
+\usepackage{color}
+
+\setlength{\topmargin}{-0.5in} \setlength{\textwidth}{6.5in}
+\setlength{\oddsidemargin}{0.0in} \setlength{\textheight}{9.1in}
+
+\newlength{\pagewidth}
+\setlength{\pagewidth}{6.5in} \pagestyle{empty}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\title{CSE 150 Fall 2009: Homework \#2}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-.5in}
+\emph{Chao Xu}
+
+\section*{Problem 1}
+
+Proof by induction.
+define $F_0 = 0$ for convenience\\
+Let $P(n)$ be the predicate\\
+$F_{3n} \equiv 0 \pmod 2$\\
+$F_{3n+1} \equiv F_{3n+2} \equiv 1 \pmod 2$\\
+ \\
+\emph{Base case:} $P(0)$ is true.\\
+$F_0 \equiv 0 \pmod 2$\\
+$F_1 \equiv F_2 \equiv 1 \pmod 2$\\
+ \\
+\emph{Inductive step:} Assume $P(n)$ is true, then $P(n+1)$ is true.\\
+$F_{3(n+1)} \equiv F_{3n+1} + F_{3n+2} \equiv 0 \bmod 2$\\
+$F_{3(n+1)+1} \equiv F_{3n+2} + F_{3(n+1)} \equiv 1 \bmod 2$\\
+$F_{3(n+1)+2} \equiv F_{3(n+1)} + F_{3(n+1)+1} \equiv 1 \bmod 2$\\
+ \\
+Therefore $P(n)$ is true for all $n$ by induction.
+
+\section*{Problem 2}
+
+Proof by induction.
+Let $P(n)$ be the predicate\\
+\[
+\sum_{i=1}^{n}i^3=\left[\frac{n(n+1)}{2}\right]^2
+\]
+ \\
+\emph{Base case:} $P(1)$ is true.$1^3 = (\frac{1(1+1)}{2})^2$\\
+ \\
+\emph{Inductive step:} Assume $P(n)$ is true, then $P(n+1)$ is true.\\
+\[\sum_{i=1}^{n+1}i^3=\left[\frac{n(n+1)}{2}\right]^2+ (n+1)^3\]
+\[=\frac{4+12n+13n^2+6n^3+n^4}{4}\]
+\[=\left[\frac{(n+1)(n+2)}{2}\right]^2\]
+ \\
+Therefore $P(n)$ is true for all $n$ by induction.
+
+\section*{Problem 3}
+
+Proof by induction.
+Let $P(n)$ be the predicate\\
+\[
+\sum_{i=0}^{n}x^i=\frac{x^{n+1}-1}{x-1}
+\]
+ \\
+\emph{Base case:} $P(0)$ is true. $1 = \frac{x-1}{x-1}$\\
+ \\
+\emph{Inductive step:} Assume $P(n)$ is true, then $P(n+1)$ is true.\\
+\[
+\sum_{i=0}^{n+1}x^i=\frac{x^{n+1}-1}{x-1}+x^{n+1}
+\]
+\[
+\sum_{i=0}^{n+1}x^i=\frac{x^{n+1}-1+(x^{n+1})(x-1)}{x-1}
+\]
+\[
+\sum_{i=0}^{n+1}x^i=\frac{x^{n+2}-1}{x-1}
+\]
+ \\
+Therefore $P(n)$ is true for all $n$ by induction.
+
+\section*{Problem 4}
+$a$ is irrational, $p,q,m,n$ are integers. $n,q\neq 0$
+\newtheorem{lma}{Lemma}
+\begin{lma}
+Rational numbers are closed under addition and multiplication
+\end{lma}
+\begin{proof}
+$\frac{p}{q} + \frac{m}{n} = \frac{pn+qm}{qn}$, which is rational because $pn+qm, qn$ are integers.\\
+$\frac{p}{q} \frac{m}{n} = \frac{pm}{qn}$, which is rational, because $pm, qn$ are integers.
+\end{proof}
+Note this also shows a square of rational number is never irrational, hence irrationals can't have rational square roots.
+\begin{lma}
+The sum of a irrational number and a rational number is irrational.
+\end{lma}
+\begin{proof}
+Proof by contradiction.\\
+$\frac{p}{q} + a = \frac{m}{n}$\\
+$a = \frac{m}{n} + (- \frac{p}{q})$\\
+$a$ is rational, a contradiction. Thus prove the lemma.
+\end{proof}
+
+\paragraph{Proof for the original problem}
+Proof by induction.\\
+Let $P(n)$ be the predicate\\
+$x_n$ is irrational.\\
+ \\
+\emph{Base case:} $P(1)$ is true.\\
+ \\
+\emph{Inductive step:} Assume $P(n)$ is true, then $P(n+1)$ is true.\\
+$x_{n+1} = \sqrt{1+x_n}$ is irrational due to the above lemmas.\\
+Therefore $P(n)$ is true for all $n$ by induction.
+
+\section*{Problem 5}
+
+The problem can be restated as below, where each team is a vertex, and $v_i$ lose to $v_j$ is directed edge $(v_j,v_i)$.\\
+Given a directed graph, where each vertex has a directed edge to or from every other vertex, prove there exist a Hamiltonian path.\\
+
+\begin{lma}
+If there exist a hamiltonian path $H$ in directed graph $G$ which goes though vertices $v_1,v_2, \ldots, v_n$ in order. Add another vertex $v$ into $G$, where there is a directed edge between $v$ and any other vertex. Let the new graph be $G'$. Then $G'$ contains a hamiltonian path $H'$ that contains $\{(v_i, v), (v, v_{i+1})\}$, $(v_n, v)$ or $(v, v_1)$ as edges.
+\end{lma}
+\begin{proof}
+Case 1: if $(v_n,v)$ exists, then let the path that go though $v_1, v_2, \ldots, v_n, v$ sequentially be $H'$.\\
+Case 2: if $(v,v_1)$ exists, then let the path that go though $v, v_1, v_2, \ldots, v_n$ sequentially be $H'$.\\
+Case 3: if both $(v_n,v)$ and $(v,v_1)$ don't exist,\\
+Let $S$ be the set of $i$ such that $(v_i,v)$ exists in $G'$.\\
+Let $T$ be the set of $i$ such that $(v,v_i)$ exists in $G'$.\\
+$S \cup T = \{1,2,\ldots n\}$ and $\max(T)=n>\max(S)$(because $(v_n,v)$ does not exist)\\
+By Well-ordering principle. There must be a largest $i$, such that $(v_i, v)$ exists in $G'$, let that $i$ be $m$.\\
+Also by Well-ordering principle. There must be a smallest $i>m$, such that $(v, v_i)$ exists in $G'$.\\
+The smallest $i$ with that property is $m+1$, since $v_{m+1}$ can't be in set $S$. The edges $(v_m, v), (v,v_{m+1})$ exist in $G'$.\\
+Then let the path that go though $v_1, \ldots, v_m, v, v_{m+1},\ldots, v_n$ sequentially be $H'$.\\
+By definition, $H'$ is a Hamiltonian path. It proves the lemma.
+\end{proof}
+
+\paragraph{Proof for the original problem}
+Proof by induction.
+Let $P(n)$ be the predicate\\
+For a directed graph of $n$ vertex, where each vertex has a directed edge from or to every other vertex, there exist a Hamiltonian path.
+ \\
+\emph{Base case:} $P(2)$ is true.Either $(v_1,v_2)$ or $(v_2,v_1)$\\
+ \\
+\emph{Inductive step:} Assume $P(n)$ is true, then $P(n+1)$ is true.\\
+With the above lemma, for any graph with a Hamiltonian path, adding another vertex that has a directed edge from or to every other vertex, the new graph also have a Hamiltonian path.\\
+Therefore $P(n)$ is true for all $n$ by induction.
+There are always a arrangement of the teams in some order $T_1, \ldots, T_n$ such
+that $T_i$ beat $T_{i-1}$ for all $2\leq i\leq n$.
+
+\section*{Problem 6}
+If there are $n$ piles of tokens, renumber each pile $i$ into $n-i$. Thus the player remove a token from pile $i$, and put token on piles $j<i$.(because it makes the induction easier)\\
+Proof by induction.\\
+Let $P(n)$ be the predicate\\
+Game with $n$ piles eventually end.\\
+ \\
+\emph{Base case:} $P(1)$ is true. If there are $k$ tokens, it ends in $k$ steps.\\
+ \\
+\emph{Inductive step:} Assume $P(n)$ is true, then $P(n+1)$ is true.\\
+\\
+If pile $n+1$ gets removed in finite amount of steps, then $P(n+1)$ gets reduced to $P(n)$, which finishes in finite amount of steps, thus prove game must end.\\
+\indent \indent  \parbox[t]{6in}{
+
+Proof by induction.\\
+Let $Q(k)$ be the predicate\\
+If the pile $n+1$ have $k$ tokens, then it will be removed in finite amount of steps.\\
+
+ \emph{Base case:} $Q(0)$ is true. If there are no tokens, all of the tokens are removed.\\
+
+ \emph{Inductive step:} Assume $Q(k)$ is true, then $Q(k+1)$ is true.\\
+
+The $k+1$th token will either be removed before all other pile are out of token, or removed after all other pile are out of token. To maximize the amount of steps, one can chose to remove all tokens before removing a token from the $n+1$th pile. Because $P(n)$ is true, removal of all tokens in other piles can be done in finite amount of steps. Thus it is reduced to $Q(k)$ in finite many steps. Since $Q(k)$ is also done in finite amount of steps. $Q(k+1)$ is true\\
+Therefore $Q(k)$ is true for all $k$ by induction.\\
+
+}\\
+Therefore $P(n)$ is true for all $n$ by induction.
+
+\end{document}
+\theend

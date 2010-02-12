@@ -1,0 +1,80 @@
+\documentclass[letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{latexsym}
+\usepackage{mathrsfs}
+\usepackage{eufrak}
+\usepackage[pdftex]{graphicx}
+\usepackage{color}
+\usepackage{mathrsfs}
+\setlength{\topmargin}{-0.5in} \setlength{\textwidth}{6.5in}
+\setlength{\oddsidemargin}{0.0in} \setlength{\textheight}{9.1in}
+
+\newlength{\pagewidth}
+\setlength{\pagewidth}{6.5in} \pagestyle{empty}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\B}{\mathfrak{B}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\laplace}[1]{\mathscr{L}\{#1\}}
+\newcommand{\ilaplace}[1]{\mathscr{L}^{-1}\{#1\}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\fracnoline}[2]{\genfrac{}{}{0pt}{}{#1}{#2}}
+\newcommand{\rref}{\operatorname{rref}}
+\newcommand{\rank}{\operatorname{rank}}
+%\newcommand{\ker}{\operatorname{ker}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Example]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Remark]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\title{MAT305 Final Exam}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-.5in}
+$a,b,c$ are rationals. $\sqrt{a}+\sqrt{b}+\sqrt{c}$ is rational. Prove $\sqrt{a},\sqrt{b},\sqrt{c}$ are rationals.
+Let $A = \{\sqrt{a},\sqrt{b},\sqrt{c}\}$
+Let $r,s$ be a placeholder for any rational number.\\
+There are more than 1 irrational number in $A$. Since irrational+rational = irrational.\\
+There are more than 2 irrational numbers in $A$. \\
+Proof by contradiction. Let $\sqrt{c}\in \Q$, and others are irrational. Then
+$$\sqrt{a}+\sqrt{b}+\sqrt{c}\in \Q$$
+$$\sqrt{a}+\sqrt{b}\in \Q$$
+$$\sqrt{a}= r - \sqrt{a}$$
+$$(\sqrt{a}+\sqrt{b})^2\in \Q$$
+$$a+2\sqrt{a}\sqrt{b}+b\in \Q$$
+$$\sqrt{a}\sqrt{b}\in \Q$$
+$$\sqrt{a}(r-\sqrt{a})\in \Q$$
+$$r\sqrt{a}-a\in \Q$$
+$$\sqrt{a}\in \Q$$
+There are 3 irrational numbers in $A$
+$$\sqrt{a}+\sqrt{b}+\sqrt{c}\in \Q$$
+$$\sqrt{a}=r - \sqrt{b}-\sqrt{c}$$
+$$(\sqrt{a}+\sqrt{b}+\sqrt{c})^2\in \Q$$
+$$\sqrt{ab}+\sqrt{bc}+\sqrt{ac}\in \Q$$
+$$\sqrt{a}(\sqrt{b}+\sqrt{c})+\sqrt{bc} \in \Q$$
+$$(\sqrt{r}-\sqrt{b}-\sqrt{c})(\sqrt{b}+\sqrt{c})+\sqrt{bc} \in \Q$$
+$$r(\sqrt{b}+\sqrt{c})-\sqrt{bc} \in \Q$$
+$$(r(\sqrt{b}+\sqrt{c})-\sqrt{bc})^2 \in \Q$$
+$$b c - 2r \sqrt{b} \sqrt{b c}- 2r \sqrt{c} \sqrt{b c} + b r^2 + 
+ 2r^2 \sqrt{bc} + c r^2 \in \Q$$
+$$(-\sqrt{b}-\sqrt{c}+r) \sqrt{b c}\in \Q$$
+$$\sqrt{a}\sqrt{bc}\in \Q$$
+It is only rational if $\sqrt{a}$ and $\sqrt{bc}$ both rational or irrational. Since $\sqrt{a}$ is irrational, then $\sqrt{bc}$ is irrational. Same reasoning we can have $\sqrt{ab}$,$\sqrt{ac}$,$\sqrt{bc}$ are all irrational.
+
+
+\end{document}
+\theend

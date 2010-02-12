@@ -1,0 +1,86 @@
+\documentclass{article}
+\usepackage[x11names, rgb]{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{snakes,arrows,shapes}
+\usepackage{amsmath}
+%
+%
+%
+%
+
+\begin{document}
+\pagestyle{empty}
+%
+%
+%
+
+\enlargethispage{100cm}
+% Start of code
+% \begin{tikzpicture}[anchor=mid,>=latex',line join=bevel,]
+\begin{tikzpicture}[>=latex',line join=bevel,]
+  \pgfsetlinewidth{1bp}
+%%
+\pgfsetcolor{black}
+  % Edge: R -- S
+  \draw [] (61bp,289bp) .. controls (65bp,277bp) and (71bp,263bp)  .. (75bp,251bp);
+  % Edge: S -- W
+  \draw [] (82bp,216bp) .. controls (82bp,175bp) and (82bp,77bp)  .. (82bp,36bp);
+  % Edge: S -- M
+  \draw [] (70bp,218bp) .. controls (61bp,206bp) and (48bp,190bp)  .. (39bp,178bp);
+  % Edge: T -- W
+  \draw [] (125bp,74bp) .. controls (116bp,62bp) and (103bp,46bp)  .. (94bp,34bp);
+  % Edge: J -- W
+  \draw [] (39bp,74bp) .. controls (48bp,62bp) and (61bp,46bp)  .. (70bp,34bp);
+  % Edge: R -- M
+  \draw [] (51bp,288bp) .. controls (45bp,260bp) and (35bp,208bp)  .. (30bp,180bp);
+  % Edge: M -- J
+  \draw [] (27bp,144bp) .. controls (27bp,133bp) and (27bp,119bp)  .. (27bp,108bp);
+  % Edge: S -- T
+  \draw [] (89bp,216bp) .. controls (99bp,189bp) and (119bp,136bp)  .. (130bp,108bp);
+  % Node: J
+\begin{scope}
+  \pgfsetstrokecolor{black}
+  \draw (27bp,90bp) ellipse (27bp and 18bp);
+  \draw (27bp,90bp) node {J};
+\end{scope}
+  % Node: M
+\begin{scope}
+  \pgfsetstrokecolor{black}
+  \draw (27bp,162bp) ellipse (27bp and 18bp);
+  \draw (27bp,162bp) node {M};
+\end{scope}
+  % Node: S
+\begin{scope}
+  \pgfsetstrokecolor{black}
+  \draw (82bp,234bp) ellipse (27bp and 18bp);
+  \draw (82bp,234bp) node {S};
+\end{scope}
+  % Node: R
+\begin{scope}
+  \pgfsetstrokecolor{black}
+  \draw (54bp,306bp) ellipse (27bp and 18bp);
+  \draw (54bp,306bp) node {R};
+\end{scope}
+  % Node: T
+\begin{scope}
+  \pgfsetstrokecolor{black}
+  \draw (137bp,90bp) ellipse (27bp and 18bp);
+  \draw (137bp,90bp) node {T};
+\end{scope}
+  % Node: W
+\begin{scope}
+  \pgfsetstrokecolor{black}
+  \draw (82bp,18bp) ellipse (27bp and 18bp);
+  \draw (82bp,18bp) node {W};
+\end{scope}
+%
+\end{tikzpicture}
+% End of code
+
+%
+\end{document}
+%
+
+
+

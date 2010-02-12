@@ -1,0 +1,89 @@
+\documentclass[letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{latexsym}
+\usepackage{amsthm}
+\usepackage[pdftex]{graphicx}
+\usepackage{color}
+\usepackage{xspace}
+\usepackage[x11names, rgb]{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{snakes,arrows,shapes}
+
+\setlength{\topmargin}{-0.5in} \setlength{\textwidth}{6.5in}
+\setlength{\oddsidemargin}{0.0in} \setlength{\textheight}{9.1in}
+
+\newlength{\pagewidth}
+\setlength{\pagewidth}{6.5in} \pagestyle{empty}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newtheorem{lma}{Lemma}
+%\author{Chao Xu}
+\title{MAT 205 stuff}
+\date{}
+\begin{document}
+\maketitle
+\vspace{-.5in}
+It's possible for me to make a mistake. the general way to solve the problem
+should hold. and I can't do one of the sub-problem.
+\section{}
+
+\subsection*{a)}
+$\nabla f(x,y) = (\frac{\partial f}{\partial x},\frac{\partial f}{\partial y})=
+(\cos \frac{\pi}{4}, \sin \frac{\pi}{4}) =
+(\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}})$
+\subsection*{b)}
+$(1,-1),(-1,1)$
+\subsection*{c)}
+$(\frac{\partial f}{\partial x},\frac{\partial f}{\partial y}) {1 \choose 2} =
+\frac{1}{\sqrt{2}}+2 \frac{1}{\sqrt{2}} = \frac{3}{\sqrt{2}}$
+\subsection*{d)}
+$f(x,y,z) = x^2+2xy+z$.
+$\nabla f(x_0)$ is the normal vector.
+$(2x+2y,2x,1) = (4,2,1)$
+
+\section{}
+Should be 0. $T(x,y) = (\frac{1}{4}x, 0) + (0, \frac{1}{2}y) =
+(u,v)$. $\int_{T(R)} xy dx dy$. can be transformed into $ \int_R uv det|T| du dv
+= \frac{1}{8} \int_R uv dudv $. $R$ is a circle. For every $(u,v)$, there exist
+$(-u,v)$, we have $\int_{semicircle} (uv -uv) dudv= 0$.
+
+\section{}
+Langrange multiplier.
+$f(x,y) = (x-1)^2+(y-2)^2$\\
+Instead of $x^2 + y^2 \leq 45$, we have $x^2 + y^2 = 45$. $f(x,y)$ can't reach
+as large value when it's less than 45. $g(x,y) = x^2+y^2-45$\\
+$f'(x) + \lambda g'(x) = 0$\\
+$(x-1)^2+(y-2)^2+x^2+y^2-45=0$\\
+Critical points
+$2x-2+2\lambda x =0$ and $2y-4 + 2\lambda y =0$\\
+$(1+\lambda)x = 1$ and $(1+\lambda)y = 2$\\
+$y=2x$\\
+$x^2+(2x)^2=45$\\
+$x = \pm 3$\\
+$y = \pm 6$\\
+when $x=-3$, $y=-6$, $f(x,y)$ takes on max value of 80.
+
+\section{}
+$F((u,v),(x,y)) = (u^2xy^2+uvx+y-2,vx^2+u^2y^2+uv-5)$
+$F((1,2),(x,y)) = (xy^2+2x+y-2,2x^2+y^2-3)$
+$F_y((1,2),(1,-1)) = \begin{pmatrix}y^2+2 & 2xy+y\\ 4x & 2y\end{pmatrix} =
+\begin{pmatrix}3 & -3\\ 4 & -2\end{pmatrix}$
+$\begin{pmatrix}3 & -3\\ 4 & -2\end{pmatrix}$ has a inverse.
+By inverse function theorem, it's possible to solve the equation locally near
+u=1 and v=2.
+I can't find the partial.
+
+\subsection*{not related above}
+
+$f(g(2,3)) = f'(g(2,3))g'(2,3)$\\
+$=f'(6,11)g'\begin{pmatrix}v & u\\ 1 & 2v\end{pmatrix}_{(2,3)}$\\
+$= \begin{pmatrix}2 & 6\\ 3 & 11\end{pmatrix}
+\begin{pmatrix}3 & 2\\ 1 &
+4\end{pmatrix}$
+\end{document}
+\theend

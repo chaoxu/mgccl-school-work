@@ -1,0 +1,141 @@
+\documentclass[letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{latexsym}
+\usepackage[pdftex]{graphicx}
+\usepackage{color}
+\usepackage{xspace}
+
+\setlength{\topmargin}{-0.5in} \setlength{\textwidth}{6.5in}
+\setlength{\oddsidemargin}{0.0in} \setlength{\textheight}{9.1in}
+
+\newlength{\pagewidth}
+\setlength{\pagewidth}{6.5in} \pagestyle{empty}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newcommand{\aprocedure}{\textbf{pr}\=\+\textbf{ocedure}\xspace}
+\newcommand{\ado}{\textbf{do}\=\+\xspace}
+\newcommand{\awhile}{\textbf{wh}\=\+\textbf{ile}\xspace}
+\newcommand{\aif}{\textbf{if}\=\+\xspace}
+\newcommand{\aelse}{\-\kill\textbf{el}\=\+\textbf{se}\xspace}
+\newcommand{\afor}{\textbf{fo}\=\+\textbf{r}\xspace}
+\newcommand{\aend}{\-\kill}
+\newcommand{\areturn}{\textbf{return}\xspace}
+\newcommand{\acontinue}{\textbf{continue}\xspace}
+
+
+\title{CSE 150 Fall 2009: Homework \#4}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-.5in}
+\emph{Chao Xu}
+
+\section*{Problem 1}
+\begin{itemize}
+\item $T(n)=T(\lfloor n/2\rfloor)+1=\Theta(\log n)$
+\item $T(n)=2T(\lfloor n/2\rfloor)+1=\Theta(n)$
+\item $T(n)=4T(\lfloor n/2\rfloor)+1=\Theta(n^2)$
+\item $T(n)=T(n-1)+1=\Theta(n)$  [This is $T(n) = n$ written recursively]
+\item $T(n)=2T(n-1)+1=\Theta(2^n)$  [$2^n\leq T(n)\leq 3^n$]
+\item $T(n)=T(\lfloor n/2\rfloor)+n=\Theta(n)$
+\item $T(n)=4T(\lfloor n/2\rfloor)+n=\Theta(n^2)$
+\end{itemize}
+
+\section*{Problem 2}
+The following will use $A[i,j]$ for $A[i,\ldots,j]$ and if $i>j$, it return nil.
+\begin{tabbing}
+\aprocedure $f(A[0,n-1][0,m-1],x)$\\
+\aif $A=nil$\\
+\areturn false\\
+\aend
+$i \gets \lfloor \frac{n}{2} \rfloor$\\
+$j \gets \lfloor \frac{m}{2} \rfloor$\\
+$k \gets A[i][j]$\\
+\aif $m=1 \wedge n=1$\\
+\areturn $k=x$\\
+\aend
+\aif $x<k$\\
+\areturn $f(A[0,i][0,j],x) \vee f(A[0,i][j+1,m-1],x) \vee f(A[i+1,n-1][0,j],x)$ \\
+\aend
+\aif $x>k$\\
+\areturn $f(A[i+1,n-1][j+1,m-1],x) \vee f(A[0,i][j+1,m-1],x) \vee f(A[i+1,n-1][0,j],x)$ \\
+\aend
+\areturn true
+\end{tabbing}
+
+\[T(mn) = 3T(\frac{mn}{4}) + 1\]
+\[T(mn) = \Theta(mn^{log_4 3}) < \Theta(mn)\]
+
+\emph{Note: There exist a $\Theta(m+n)$ algorithm, but I fail to think of it when I hand in the hw.}
+\section*{Problem 3}
+\begin{tabbing}
+\aprocedure insert$(L,x)$\\
+\aif $x \leq L.data \vee L = nil$\\
+$N.data \gets x$\\
+$N.next \gets L$\\
+\areturn $N$\\
+\aend
+$L.next$ = insert($L.next,x$)\\
+\areturn $L$
+\end{tabbing}
+
+\begin{tabbing}
+\aprocedure sort$(L)$\\
+\aif $L = nil$\\
+\areturn $L$\\
+\aend
+$T$ = sort$(L.next)$\\
+$L$ = insert$(T,L.data)$\\
+\areturn $L$
+\end{tabbing}
+
+Insert is $T(n) = T(n-1) + 1 = \Theta(n)$.\\
+Sort is $T(n) = T(n-1) + n=\Theta(n^2)$,
+
+\section*{Problem 4}
+The number of internal nodes for a full binary tree with $n$ leaves is $n-1$.\\
+Let $I(B)$ be the number of internal nodes in $B$, $L(B)$ be the number of leaves and $D(B)$ be the depth of $B$.
+Proof by induction:\\
+Let $P(k)$ be the predicate:\\
+Full binary tree $B$ where $D(B) = k$, then $I(B) = L(B)-1$.\\
+\emph{base case}: Trivial when $k = 0$\\
+\emph{induction step}: Assume $P(m)$ is true for all $m\leq k$, then $P(k+1)$ is true.\\
+$D(B) = k+1$, $B$ is composed of a root and 2 full binary tree $B_1$ and $B_2$ where $D(B_1), D(B_2) \leq k$.
+$L(B) = L(B_1) + L(B_2)$, $I(B) = I(B_1) + I(B_2) + 1$.\\
+$I(B) = L(B_1) -1 + L(B_2) -1 + 1$\\
+$I(B) = L(B_1) + L(B_1) -1$\\
+$I(B) = L(B) -1$\\
+Thus prove $P(k)$ is true for all $k$.
+
+\section*{Problem 5}
+
+\begin{tabbing}
+\aprocedure removesmallest$(N)$\\
+\aif $N.left = nil$\\
+$T\gets N.data$\\
+$N\gets N.right$\\
+\areturn $T$\\
+\aend
+\areturn removesmallest($N.left$)\\
+\aend
+\end{tabbing}
+
+\begin{tabbing}
+\aprocedure removeroot$(N)$\\
+\aif $N.right \neq nil$\\
+$N.data \gets$ removesmallest($N.right$)\\
+\areturn$ N$\\
+\aend
+$N \gets N.left$\\
+\areturn
+\aend
+\end{tabbing}
+
+\end{document}
+\theend

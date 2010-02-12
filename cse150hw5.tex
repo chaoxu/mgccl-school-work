@@ -1,0 +1,116 @@
+\documentclass[letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{latexsym}
+\usepackage[pdftex]{graphicx}
+\usepackage{color}
+\usepackage{xspace}
+
+\setlength{\topmargin}{-0.5in} \setlength{\textwidth}{6.5in}
+\setlength{\oddsidemargin}{0.0in} \setlength{\textheight}{9.1in}
+
+\newlength{\pagewidth}
+\setlength{\pagewidth}{6.5in} \pagestyle{empty}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newcommand{\aprocedure}{\textbf{pr}\=\+\textbf{ocedure}\xspace}
+\newcommand{\ado}{\textbf{do}\=\+\xspace}
+\newcommand{\awhile}{\textbf{wh}\=\+\textbf{ile}\xspace}
+\newcommand{\aif}{\textbf{if}\=\+\xspace}
+\newcommand{\aelse}{\-\kill\textbf{el}\=\+\textbf{se}\xspace}
+\newcommand{\afor}{\textbf{fo}\=\+\textbf{r}\xspace}
+\newcommand{\aend}{\-\kill}
+\newcommand{\areturn}{\textbf{return}\xspace}
+\newcommand{\acontinue}{\textbf{continue}\xspace}
+
+
+\title{CSE 150 Fall 2009: Homework \#5}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-.5in}
+\emph{Chao Xu}
+
+\section*{Problem 1}
+
+\begin{enumerate}
+\item There are $F_n$ ways, where $F_n$ is the $n$th Fibonacci number. The new covering is the covering for $n-2$  cases padded with two horizontal dominoes, and $n-1$ cases padded with 1 vertical dominoes. 
+
+  \item 
+$a_n$ is the string of $n$ H and T with no two adjacent H's. $a_1 = 2,a_2=3$, then for $a_n$, if it end in tails, then the previous string is any of the $a_{n-1}$ strings. If it end in heads, then the one before must be tails, thus it must be one of the $a_{n-2}$ valid strings. $a_n = a_{n-1} + a_{n-2}$, $a_n = F_{n+1}$ for $n>2$.
+  \item 
+Let $C_n$ be the number of ways to cover $1\times n$ checkerboard, then we have $C_n = C_{n-1} + C_{n-3}$. Since we generate all combination by adding a 1 block on $C_{n-1}$ and a 3 block on on $C_{n-3}$.
+\end{enumerate}
+
+\section*{Problem 2}
+
+$\log x_n=\log(x_{n-1}^2/x_{n-2})$.\\
+Let $b_n = \log_2(x_n)$, then we have\\
+$b_n = 2b_{n-1} - b_{n-2}$ with $b_1 = 0, b_2 = 1$.
+Solving the characteristic polynomial
+$(r-1)^2 = 0$\\
+$b_1 = A + 1B$\\
+$b_2 = A + 2B$\\
+$A = -1$\\
+$B = 1$\\
+$b_n =n-1$\\
+thus $x_n = 2^{n-1}$
+
+\section*{Problem 3}
+
+\begin{enumerate}
+  \item
+$a+b = c+d$. There are ${21 \choose 2} = 210$ possible pairs for $(a,c)$. The possible sum range from $1$ to $200$. According to the pigeonhole principle, there must exist $a,b,c,d$ such that $a+b = c+d$.
+  \item
+Only way for  $(a_1-1)(a_2-2)\ldots(a_n-n)$ to be not even is for $a_1-1,a_3-3,\ldots, a_n-n$ to be odd, thus $a_1,a_3,\ldots,a_n$ are all even. If $n=2k+1$, then $k+1$ even numbers are in that sequence. but there are only $k$ even numbers between $1$ and $n$, thus one of them has to be odd, and the product become even. 
+  \item 2 non-equal points on a sphere determine a great circle.  Then use pigeonhole principle. There are 3 points and 2 hemispheres that determined by the great circle. One has to have 2 of them. Together with the points on the great circle, 4 points have to lie in a hemisphere. 
+\end{enumerate}
+
+\section*{Problem 4}
+There are $n^2$ pairs of $(j,k)$, since it is run $n$ times , there are $(n^2)^n$ possible operations. There can be $n!$ outcomes. $\frac{(n^2)^n}{n!}$ is not a integer, since $n$ is relatively prime to $n-1$ for $n>2$. Thus this is not a $k$-to-$1$ mapping for some integer $k$. Then some permutation will show up more often.
+
+\section*{Problem 5}
+\begin{tabbing}
+  \aprocedure genPerm($n$) \\
+  $A \leftarrow [ 0, 1, 2, \ldots, n - 1 ]$ \\
+  \awhile $n>1$ \\
+    $n\gets n-1$\\
+    $j \leftarrow$ random number in the set $\{0,\ldots,n\}$ \\
+    SWAP($A[j]$, $A[n]$) \\
+  \aend
+  \areturn $A$
+\end{tabbing}
+There are only $n!$ possible procedures, since each $A[j]$ have $j$ possible position to swap, which also prove each permutation uniquely determined by each procedure.
+
+\section*{Problem 6}
+Any 3 professor can open every lock, implies each lock have at least 3 keys. If that's not true, then it is possible to chose 3 professor, where non of them have the key to the lock.\\
+Any 2 professor have a lock they can't open, and the above condition made each lock they can't open must be distinct. We have ${5 \choose 2} = 10$ locks as the lower bound of locks.  We can produce a table of lock vs professors. Where 1 means there is a key for the professor to a particular lock, 0 means other wise. There are only ${5 \choose 2}$ ways to have a string of 3 ones and 2 zeros. Thus we can generate the following table effortlessly.\\
+\begin{tabular}{l | c c c c c c c c c c}
+ & 1  & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10\\
+\hline
+1& 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0\\
+2& 1 & 1 & 1 & 0 & 0 & 0 & 1 & 1 & 1 & 0\\
+3& 1 & 0 & 0 & 1 & 1 & 0 & 1 & 1 & 0 & 1\\
+4& 0 & 1 & 0 & 1 & 0 & 1 & 1 & 0 & 1 & 1\\
+5& 0 & 0 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 1\\
+\end{tabular}\\
+It in fact works. Thus 10 are the minimal number of locks.
+
+\section*{Problem 7}
+Let $P(n)$ be the predicate "$n$ lines divide the a paper into regions, and it can be colored into blue and red such that no region share the same edge have the same color."\\
+\emph{Base case}: $P(n)$ is true.\\
+\emph{Induction step}: Suppose $P(n)$ is true, then $P(n+1)$ is true.\\
+Use $n$ lines to create a $P(n)$. Then add the $n+1$th line, let one side of the line's color be the same, let the other side of the line's color be reversed. The result is $P(n+1)$.\\
+Thus $P(n)$ is true for all $n$.
+
+\section*{Problem 8}
+It was shown in class, for $n$ ball $n$ bin problem, we expect $\frac{n}{e}$ bins have exactly 1 ball when $n$ is large. Let $E(n)$ be the expected amount of throws. We have the relation $E(n) = E(n-\frac{n}{e}) + 1$ or $E(n) = E(n(1-\frac{1}{e})) + 1$. let $1-\frac{1}{e} = \frac{1}{b}$, then $E(n) = E(\frac{n}{b}) + 1$. With master theorem, we have $\Theta(E(n)) = \Theta(\log n)$.
+\end{document}
+
+
+\theend

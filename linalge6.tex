@@ -1,0 +1,145 @@
+\documentclass[letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{latexsym}
+\usepackage{mathrsfs}
+\usepackage{eufrak}
+\usepackage[pdftex]{graphicx}
+\usepackage{color}
+
+\setlength{\topmargin}{-0.5in} \setlength{\textwidth}{6.5in}
+\setlength{\oddsidemargin}{0.0in} \setlength{\textheight}{9.1in}
+
+\newlength{\pagewidth}
+\setlength{\pagewidth}{6.5in} \pagestyle{empty}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\B}{\mathfrak{B}}
+\newcommand{\U}{\mathfrak{U}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\image}{\operatorname{image}}
+\newcommand{\rref}{\operatorname{rref}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\nullity}{\operatorname{nullity}}
+%\newcommand{\ker}{\operatorname{ker}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Example]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Remark]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\title{Linear Algebra(Bretscher) Chapter 6 Notes}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-.5in}
+
+\section{Introduction to Determinants}
+\subsection{The Determinant of a $3\times 3$ Matrix}
+\begin{definition}
+If $A = \begin{bmatrix}
+\vec u & \vec v & \vec w
+\end{bmatrix}$, then
+\[
+\det A = \vec u \cdot (\vec v \times \vec w)
+\]
+\end{definition}
+
+\begin{theorem}
+\[\det A =  a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{22}a_{31} - a_{13}a_{22}a_{31} - a_{11}a_{23}a_{32} - a_{12}a_{21}a_{33}\]
+\end{theorem}
+
+\subsection{Linearity properties of the determinant}
+The determinant are linear if all but one column or row vector is constant.
+
+\subsection{The Determinant of an $n \times n$ Matrix}
+\begin{definition}
+A \textbf{pattern} in an $n \times n$ matrix $A$ is a way to choose $n$ entries of the matrix so that there is one chosen entry in each row and in each column of $A$.
+\end{definition}
+
+\begin{definition}
+Two entries in a pattern are said to be \textbf{inverted} if one of them is located to the right and above the other in the matrix.
+\end{definition}
+
+\begin{definition}
+The \textbf{signature} of a pattern $P$ is defined as $\operatorname{sgn} P = (-1)^{(\text{number of inversions in $P$})}$
+\end{definition}
+
+\begin{definition}
+\[ \det A = \sum (\operatorname{sgn} P) (\operatorname{prod} P) \]
+where $\operatorname{prod} P$ is the product of the entires in $P$.
+\end{definition}
+
+\section{Properties of the Determinant}
+\subsection{The determinant of the Transpose}
+\begin{theorem}[The determinant of the Transpose]
+If $A$ is a square matrix, then
+\[
+\det(A^T) = \det A
+\]
+\end{theorem}
+
+\subsection{Linearity properties of the Determinant}
+\begin{theorem}[Linearity of the determinant in the rows and columns]
+Consider fixed row vectors $\vec v_1, \ldots, \vec v_{i-1}, \vec v_{i+1},\ldots,\vec v_n$ with $n$ components. Then the function
+
+\[T(\vec x) = \det 
+\begin{bmatrix}
+\vec v_1\\
+\ldots\\
+\vec v_{i-1}\\
+\vec x\\
+\vec v_{i+1}\\
+\ldots\\
+\vec v_n
+\end{bmatrix}
+\]
+from $\R^{1\times n}$ to $\R$ is a linear transformation. This property is referred to as \textbf{linearity of the determinant in the $i$th row}. Likewise, the determinant is \textbf{linear in all the columns}.
+\end{theorem}
+
+\subsection{Determinants and Gauss-Jordan Elimination}
+\begin{theorem}[Elementary row operations and determinants]
+\begin{enumerate}
+\item If $B$ is obtained from $A$ by dividing a row of $A$ by scalar $k$, then
+\[
+\det B = (1/k) \det A
+\]
+\item If $B$ is obtained from $A$ by a row swap, then
+\[
+\det B = - \det A
+\]
+we say that the determinant is \textbf{alternating} on the rows.
+\item If $B$ is obtained from $A$ by adding a multiple of a row of $A$ to another row, the determinant doesn't change.
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}[Determinant of a product of matrices]
+If $A$ and $B$ are $n\times n$ matrices, then
+\[
+\det(AB) = (\det A)(\det B)
+\]
+\end{theorem}
+
+\begin{theorem}[Determinants of similar matrices]
+If matrix $A$ is similar to $B$, then $\det A = \det B$.
+\end{theorem}
+
+\begin{theorem}[Determinant of a inverse]
+If $A$ is an invertible matrix, then
+\[
+\det(A^{-1}) = \frac{1}{\det A} = (\det A)^{-1}
+\]
+\end{theorem}
+\end{document}
+\theend

@@ -1,0 +1,113 @@
+\documentclass[letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{latexsym}
+\usepackage{mathrsfs}
+\usepackage{eufrak}
+\usepackage[pdftex]{graphicx}
+\usepackage{color}
+
+\setlength{\topmargin}{-0.5in} \setlength{\textwidth}{6.5in}
+\setlength{\oddsidemargin}{0.0in} \setlength{\textheight}{9.1in}
+
+\newlength{\pagewidth}
+\setlength{\pagewidth}{6.5in} \pagestyle{empty}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\B}{\mathfrak{B}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\rref}{\operatorname{rref}}
+\newcommand{\rank}{\operatorname{rank}}
+%\newcommand{\ker}{\operatorname{ker}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Example]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Remark]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\title{UTM: Linear Algebra(Janich) Chapter 3 Notes}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-.5in}
+\section{Linear Independence}
+\subsection{Linear Independence}
+\begin{definition}
+Let $v_1,\ldots, v_r \in V$. The set
+\[
+L(v_1,\ldots,v_r) := \{ \lambda_1 v_1 + \cdots + \lambda_r v_r | \lambda_i \in \F\} \in V
+\]
+of all \textbf{linear combinations} of $v_1,\ldots, v_r$ is called the \textbf{linear hull}(or \textbf{span}). of the $r$-tuple $(v_1,\ldots,v_r)$ of vectors. For the "0-tuple" consisting of no vectors, and denoted by $\emptyset$, we write $L(\emptyset) := \{0\}$
+\end{definition}
+\begin{theorem}
+$L(v_1,\ldots,v_r)$ is a subspace of $V$
+\end{theorem}
+
+\begin{definition}
+If the only linear combination of $(v_1,\ldots, v_r)$ equals to zero is when all coefficients equals to zero, then the $r$-tuple is \textbf{linearly independent}.
+\end{definition}
+
+\begin{definition}
+$(e_1,\ldots, e_n)$ is called the \textbf{canonical basis} of $\F^n$ if
+\[ e_1 = (1,0,\ldots,0) \]
+\[ e_2 = (0,1,\ldots,0) \]
+\[\vdots\]
+\[ e_n = (0,0,\ldots,1) \]
+\end{definition}
+
+\subsection{The Concept of Dimension}
+\begin{theorem}[Basis extension theorem]
+Let $V$ be a vector space of $\F$ and let $v_1,\ldots,v_r$, $w_1,\ldots,w_s$ be vectors of $V$. If $(v_1,\ldots,v_r)$ is linearly independent and $L(v_1,\ldots,v_r,w_1,\ldots,w_s) = V$, then by suitably chosen vectors from $(w_1,\ldots,w_s)$ one can extend $(v_1, \ldots, v_r)$ to a basis of $V$.
+\end{theorem}
+
+\begin{theorem}[Exchange lemma]
+If $(v_1,\ldots,v_n)$ and $(w_1,\ldots,w_s)$ are basis of $V$, then for each $v_i$ there exist some $w_j$, so that on replacing $v_i$ by $w_j$ in $(v_1,\ldots,v_n)$ we still have a basis.
+\end{theorem}
+\begin{theorem}
+If $(v_1,\ldots,v_n)$ and $(w_1,\ldots,w_m)$ are bases of $V$, then $m=n$.
+\end{theorem}
+
+\begin{definition}
+If $(v_1,\ldots,v_n)$ is a basis of $V$, then $n$ is called the \textbf{dimension} of $V$ or $\dim V$.
+\end{definition}
+
+\begin{theorem}
+Let $v_1,\ldots,v_r$ be vectors in $V$ and $r>\dim V$. Then $(v_1,\ldots,v_r)$ is linearly dependent.
+\end{theorem}
+
+\begin{definition}
+If $V$ possesses no basis $(v_1,\ldots,v_n)$ for $0\leq n < \infty$, then $V$ is called an \textbf{infinite-dimensional} vector space, and we write $\dim V = \infty$.
+\end{definition}
+
+\begin{definition}
+If $U_1$,$U_2$ are subspaces of $V$,
+\[
+U_1+U_2 := \{x+y| x\in U_1, y\in U_2\} \subset V
+\]
+is called the \textbf{sum} of $U_1$ and $U_2$.
+\end{definition}
+
+\begin{theorem}[Dimension formula for subspaces]
+Let $U_1$ and $U_2$ be finite dimensional subspace of $V$, then
+\[
+\dim(U_1\cap U_2) + \dim(U_1+U_2) = \dim U_1 + \dim U_2
+\]
+\end{theorem}
+
+\begin{theorem}
+$U_1$ and $U_2$ are subspace of $V$, then $U_1 \cap U_2$ is a subspace of $V$.
+\end{theorem}
+\end{document}
+\theend

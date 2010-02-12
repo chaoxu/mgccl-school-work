@@ -1,0 +1,180 @@
+\documentclass[letter]{article}
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{latexsym}
+\usepackage{mathrsfs}
+\usepackage{eufrak}
+\usepackage[pdftex]{graphicx}
+\usepackage{color}
+\usepackage{mathrsfs}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{snakes,arrows,shapes}
+\setlength{\topmargin}{-0.5in} \setlength{\textwidth}{6.5in}
+\setlength{\oddsidemargin}{0.0in} \setlength{\textheight}{9.1in}
+\usepackage[inline]{asymptote}
+\usepackage{dot2texi}
+
+\newlength{\pagewidth}
+\setlength{\pagewidth}{6.5in} \pagestyle{empty}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\B}{\mathfrak{B}}
+\newcommand{\Z}{\mathbb{Z}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Example]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Remark]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\title{AMS 311 Spring 2010 HW \#2}
+\date{}
+\author{Chao Xu}
+\begin{document}
+\maketitle
+\vspace{-.5in}
+\section*{Problems}
+\subsection*{4}
+\paragraph*{(a)}
+The sample space consist of all finite strings that contain one $1$ in the end and a infinite string of only $0$'s. Where $0$ is tail and $1$ is head.
+\paragraph*{(b)}
+\begin{enumerate}[(i)]
+ \item The strings with the amount of zeros that are divisible by 3.
+ \item The strings with the amount of zeros = 1 mod 3.
+ \item The strings with the amount of zeros = 2 mod 3.
+\end{enumerate}
+
+\subsection*{13}
+\paragraph*{(a)}
+$100000 (P(I\cup II\cup III \cap)-P(I\cap III) -P(I\cap II)- P(II\cap III) + P(I\cap II \cap III)) =100000((0.1 + 0.3 + 0.05 - 0.08 - 0.02 - 0.04 + 2*0.01) - 0.08 - 0.02 - 
+  0.04 + 0.01) = 20000$
+\paragraph*{(b)}
+$100000 P((I\cap II)\cup (I\cap III) \cup (III\cap II)) = 100000(0.08+0.02+0.04-2*0.01) = 12000$
+\paragraph*{(c)}
+$100000 P((I\cup III) \cap II) = 100000 P((I\cap II) \cup (III\cap II)) = 100000(0.08+0.04-0.01) = 11000$
+\paragraph*{(d)}
+$100000(1-P(I\cup II\cup III)) = 100000(1-(0.1+0.3+0.05-0.08-0.02-0.04+0.01)) = 68000$
+\paragraph*{(e)}
+$100000 (P((I\cap II) \cup (III\cap II)) - P(I \cap II \cap III)) = 100000(0.08+0.04-0.01-0.01) = 10000$
+
+\subsection*{15}
+\paragraph*{(a)}
+$\frac{4{13 \choose 5}}{{52 \choose 5}}\approx 0.00198079$
+\paragraph*{(b)}
+Ways to get a pair = ${13 \choose 1}{4\choose 2}$. Ways to get 3 different card after getting a pair = $\frac{48\cdot 44\cdot 40}{3!}$.\\
+Probability = $\frac{{13 \choose 1}{4\choose 2}48\cdot 44\cdot 40}{{3!}{52\choose 5}}\approx 0.422569$.
+\paragraph*{(c)}
+Ways to get 2 pairs = ${13 \choose 1}{4\choose 2}{12 \choose 1}{4\choose 2}/2!$. Ways to get 1 card after 2 pairs = $44$\\
+Probability = $\frac{44{13 \choose 1}{4\choose 2}{12 \choose 1}{4\choose 2}}{2{52 \choose 5}}\approx 0.047539$
+\paragraph*{(d)}
+Similar to above.
+$\frac{{13 \choose 1}{4\choose 3}48\cdot 44}{2{52 \choose 5}}\approx 0.0211285$
+\paragraph*{(e)}
+$\frac{{13 \choose 1}{4\choose 4}48}{{52 \choose 5}}\approx 0.000240096$
+
+\subsection*{26}
+Table of $P(R_i)$.
+\begin{tabular}{|c|c|}
+\hline
+$i$&$P(R_i)$\\
+\hline
+$2$&$\frac{1}{36}$\\
+\hline
+$3$&$\frac{2}{36}$\\
+\hline
+$4$&$\frac{3}{36}$\\
+\hline
+$5$&$\frac{4}{36}$\\
+\hline
+$6$&$\frac{5}{36}$\\
+\hline
+$7$&$\frac{6}{36}$\\
+\hline
+$8$&$\frac{5}{36}$\\
+\hline
+$9$&$\frac{4}{36}$\\
+\hline
+$10$&$\frac{3}{36}$\\
+\hline
+$11$&$\frac{2}{36}$\\
+\hline
+$12$&$\frac{1}{36}$\\
+\hline
+\end{tabular}
+
+Let $P(E_{i,n})$ = initial sum is $i$, and player win at $n$-th throw. $P(E_i)$ = probabilty of winning the when the initial sum is $i$. $P(R_i)$ is the probability to row a $i$.
+Then probabilty of winning is\\
+\[\sum_{i=2}^{12} P(E_i) = P(R_7)+P(R_{11}) + \sum_{i\in\{4,5,6,8,9,10\}} P(E_i)\]
+\[= P(R_7)+P(R_{11}) + \sum_{i\in\{4,5,6,8,9,10\}} \sum_{n=1}^\infty P(E_i,n)\]
+\[= P(R_7)+P(R_{11}) + \sum_{i\in\{4,5,6,8,9,10\}} P(R_i)\sum_{n=2}^\infty P(R_i)(1-P(R_7)-P(R_i))^{n-2}\]
+\[= P(R_7)+P(R_{11}) + 2\sum_{i=4}^6 P(R_i)^2 \sum_{n=2}^\infty (1-P(R_7)-P(R_i))^{n-1}\]
+\[=\frac{6}{36}+\frac{2}{36}+2\sum_{i=4}^6 P(R_i)^2\sum_{n=2}^\infty (\frac{30}{36}-P(R_i))^{n-2}\]
+\[=\frac{8}{36}+2\sum_{i=3}^5 (\frac{i}{36})^2 \sum_{n=0}^\infty (\frac{30-i}{36})^{n}\]
+\[=\frac{8}{36}+2\sum_{i=3}^5 (\frac{i}{36})^2\frac{36}{6+i}\]
+\[=\frac{8}{36}+2(\frac{3}{36}\frac{3}{36}\frac{36}{9} + \frac{4}{36}\frac{4}{36}\frac{36}{10} + \frac{5}{36}\frac{5}{36}\frac{36}{11})\]
+\[=\frac{244}{495}\approx 0.492929\]
+\subsection*{33}
+There are ${20\choose 4}$ sets of 4 elks.\\
+There are ${5 \choose 2}$ sets of 2 elks from the tagged group. ${15 \choose 2}$ sets of 2 elks from the non-tagged group.\\
+Probability is $\frac{{5 \choose 2}{15\choose 2}}{{20\choose 4}}\approx 0.216718$\\
+Assumption: The probability of any elk been captured is the same.
+\subsection*{35}
+\paragraph*{(a)}
+$\frac{{12\choose 3}{16\choose 2}{18\choose 2}}{{46\choose 7}}\approx 0.0754643$
+\paragraph*{(b)}
+$1 - \frac{{34\choose 7}+{34\choose 6}{12\choose 1}}{{46\choose 7}} \approx 0.597971$
+\paragraph*{(c)}
+$\frac{{12\choose 7}+{16\choose 7}+{18\choose 7}}{{46 \choose 7}}\approx 0.000823097$
+\paragraph*{(d)}
+$
+\frac{{12\choose 3}{34\choose 4}+{16\choose 3}{30\choose 4}-{12\choose 3}{16\choose 3}{18\choose 1}}{{46\choose 7}}\approx 0.43591
+$
+\subsection*{51}
+There are ${n \choose m}$ ways to chose $m$ balls, and the rest $n-m$ have to fall in $N-1$ compartments, which is $(N-1)^{n-m}$. Thus it become ${n \choose m}(N-1)^{n-m}$ for $m$ to fall into the first compartment, and rest fall elsewhere. Then the probability is $\frac{{n\choose m}(N-1)^{n-m}}{N^n}$.
+
+\subsection*{54}
+void in 1 suit = ${4 \choose 1}{39 \choose 13}$\\
+void in 2 suit = ${4 \choose 2}{26 \choose 13}$\\
+void in 3 suit = ${4 \choose 3}{13 \choose 13}$\\
+void in at least 1 suit = void in 1 suit - void in 2 suit + void in 3 suit.\\
+probability of void in at least 1 suit =$\frac{{4 \choose 1}{39 \choose 13}-{4 \choose 2}{26 \choose 13}+{4 \choose 3}{13 \choose 13}}{{52\choose 13}}\approx 0.0510655$
+
+\section*{Theoretical Exercises}
+
+\subsection*{17}
+Let $P(n)$ be the predicate ``$A_n = (n-1)(A_{n-1}+A_{n-2})$''.\\
+\emph{base case}: $P(3)$ is true, can be proved by list all possible cases.\\
+\emph{inductive step}: Suppose all $P(k)$ is true where $k<n$.Then prove $P(n)$ is true.\\
+The first person will pick a hat that's not his, he have $(n-1)$ choices. We have:
+$A_n = (n-1)f(n)$.
+We have a extra person, and there is a extra hat, if he chose the extra hat, there is only 1 choice, and then it is reduced to ways for $n-2$ people to chose $n-2$ hats = $A_{n-2}$\\
+A group of $n-1$ people, where $n-2$ of them have their own hat, and one extra person and extra hat but doesn't chose that hat. Non of them chose the same hat be $g(n-1)$.\\
+$A_n = (n-1)(A_{n-2} + g(n-1))$\\
+If the extra person didn't chose the extra hat, he have $(n-2)$ ways to chose. Then we have 1 extra person with 1 extra hat.\\
+$A_n = (n-1)(A_{n-2} + (n-2)(A_{n-3}+g(n-2))$.\\
+We have\\
+$g(n-1) = (n-2)(A_{n-3}+g(n-2))$\\
+Then one just have to find a suitable $g(n)$ such the above relation is true for all $g(k)$, $k<n$.\\
+If $g(k) = A_{k}$,then the relation $g(k-1) = (k-2)(A_{k-3}+g(k-2))$ is true for all $g(k)$, $k<n$\\
+Substute $A_{n-1}$ for $g(n-1)$. $A_n = (n-1)(A_{n-2} + A_{n-1})$\\
+Thus $P(n)$ is true for all $n$.
+
+
+\subsection*{20}
+Let the points be $a_1,a_2,\ldots$, and the probability of chosing poing $a_i$ be $P(a_i)$. If they are all equal, then there exist $p$, such that $\forall i(p = P(a_i))$
+\[\sum_{i=1}^\infty P(a_i) = \sum_{i=1}^\infty p = 1\]
+Such real number $p$ can't exist. For any real number $p>0$, there exist a $n$ such that $np>1$ due to the Archimedean property of real numbers. Thus \[\sum_{i=1}^n p > 1\] for some $n$. for $p\leq 0$, \[\sum_{i=1}^\infty p \leq 0\]
+It's possible for all points to have a positive probability.\\
+For example, $P(a_i) = \frac{1}{2^i}$
+\end{document}
+\theend

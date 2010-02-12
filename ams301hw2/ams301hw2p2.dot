@@ -1,0 +1,43 @@
+graph g{
+a [pos="0, 100", label=" "];
+b [pos="100, 100",label=" "];
+c [pos="100, 0",label=" "];
+d [pos="0, 0",label=" "];
+e [pos="20, 80",label=" "];
+f [pos="80, 80",label=" "];
+g [pos="80, 20",label=" "];
+h [pos="20, 20",label=" "];
+
+i [pos="40, 60",label=" "];
+j [pos="60, 60",label=" "];
+k [pos="60, 40",label=" "];
+l [pos="40,40",label=" "];
+b--f;
+a--b;
+b--c;
+c--d;
+d--a;
+a--e;
+e--f;
+f--g;
+g--c;
+g--h;
+h--d;
+i--j;
+i--e;
+j--f;
+j--k;
+k--g;
+l--k;
+l--h;
+l--i;
+e--h;
+
+
+
+
+
+
+
+}
+
